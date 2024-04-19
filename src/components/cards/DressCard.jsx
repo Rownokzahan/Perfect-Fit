@@ -1,24 +1,29 @@
 import { FaRegHeart } from "react-icons/fa";
 import { BiSolidRightArrow } from "react-icons/bi";
+import { Link } from "react-router-dom";
 
 const DressCard = ({ dress, status = "" }) => {
+  const { _id, name, price, image } = dress ?? {};
+
   return (
     <div className="relative overflow-hidden group mb-4">
-      <div onClick={()=>console.log("you clicked on buy")} className="relative overflow-hidden h-52 md:h-96 mb-2 md:mb-4 cursor-pointer">
-        <img
-          src={dress.image}
-          alt={dress.name}
-          className="w-full h-full object-cover scale-100 group-hover:scale-105 duration-300"
-        />
-        {/* Buy Now Button */}
-        <button className="button-white absolute -bottom-2 group-hover:bottom-4 right-1/2 translate-x-1/2 opacity-0 group-hover:opacity-100 transition-all duration-300">
-          Buy Now
-        </button>
-      </div>
+      <Link to={`/dresses/${_id}/customize`}>
+        <div className="relative overflow-hidden h-52 md:h-96 mb-2 md:mb-4 cursor-pointer">
+          <img
+            src={image}
+            alt={name}
+            className="w-full h-full object-cover scale-100 group-hover:scale-105 duration-300"
+          />
+          {/* Buy Now Button */}
+          <button className="button-white absolute -bottom-2 group-hover:bottom-4 right-1/2 translate-x-1/2 opacity-0 group-hover:opacity-100 transition-all duration-300">
+            Buy Now
+          </button>
+        </div>
+      </Link>
 
       <div className="font-semibold space-y-1 md:space-y-2">
-        <h4 className="md:text-lg">{dress.name}</h4>
-        <h5>${dress.price}</h5>
+        <h4 className="md:text-lg">{name}</h4>
+        <h5>${price}</h5>
       </div>
 
       {/* Status */}

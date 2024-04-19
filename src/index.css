@@ -15,10 +15,11 @@
 
   .floating-label {
     @apply absolute -top-5 px-2 left-3 bg-primary-white text-sm
-            peer-placeholder-shown:top-1.5
+            peer-placeholder-shown:top-1
             peer-placeholder-shown:left-5
             peer-placeholder-shown:px-0
             peer-placeholder-shown:text-base
+            peer-placeholder-shown:text-secondary-black
             transition-all duration-300;
   }
 
