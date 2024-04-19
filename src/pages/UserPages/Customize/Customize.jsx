@@ -17,8 +17,8 @@ const Customize = () => {
 
   return (
     <Container marginTop={0}>
-      <div className="mt-12 grid md:grid-cols-2 gap-16">
-        <div className="">
+      <div className="mt-12 grid xl:grid-cols-2 gap-16">
+        <div className="md:h-3/4 xl:w-full mx-auto">
           <div className="flex justify-between items-center">
             <h3 className="text-2xl font-medium">{name}</h3>
             <div className="relative">
@@ -30,7 +30,7 @@ const Customize = () => {
           <img src={image} alt="" className="w-full" />
         </div>
 
-        <div className="space-y-8 border p-8">
+        <div className="space-y-8 border p-2 sm:p-8">
           <h3 className="text-xl text-center font-medium text-secondary-black">
             Customize Dress Styles
           </h3>

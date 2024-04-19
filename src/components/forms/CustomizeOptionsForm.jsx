@@ -32,10 +32,10 @@ const CustomizeOptionsForm = ({ dress_id = null }) => {
       {customizeOptions?.map((item) => (
         <div key={item.key}>
           <h5 className="font-medium mb-4">{item.name}</h5>
-          <div className="flex flex-wrap gap-6 text-xs text-center">
+          <div className="flex flex-wrap gap-2 sm:gap-6 text-xs text-center">
             <label
               htmlFor={`default-${item.key}`}
-              className="block h-20 relative cursor-pointer mb-6"
+              className="block h-16 sm:h-20 relative cursor-pointer mb-6"
             >
               <input
                 type="radio"
@@ -49,7 +49,7 @@ const CustomizeOptionsForm = ({ dress_id = null }) => {
                 }
               />
               <PiCheckCircleFill className="text-lg text-primary-black absolute -top-2 left-1/2 -translate-x-1/2 opacity-0 peer-checked:opacity-95 transition-opacity duration-75" />
-              <div className="h-full w-20 p-2 border rounded-lg peer-checked:border-primary-black flex justify-center items-center">
+              <div className="h-full w-16 sm:w-20 p-2 border rounded-lg peer-checked:border-primary-black flex justify-center items-center">
                 <p>Default</p>
               </div>
               <p className="mt-1">As Shown</p>
@@ -58,7 +58,7 @@ const CustomizeOptionsForm = ({ dress_id = null }) => {
             {item?.types.map((type) => (
               <label
                 htmlFor={type.value}
-                className="block h-20 mb-6 relative cursor-pointer"
+                className="block h-16 sm:h-20 mb-6 relative cursor-pointer"
                 key={type.value}
               >
                 <input
@@ -74,7 +74,7 @@ const CustomizeOptionsForm = ({ dress_id = null }) => {
                 <img
                   src={type.image}
                   alt=""
-                  className="h-full w-20 p-2 border rounded-lg peer-checked:border-primary-black duration-75"
+                  className="h-full w-16 sm:w-20 p-2 border rounded-lg peer-checked:border-primary-black duration-75"
                 />
                 <p className="mt-1">{type.name}</p>
               </label>
@@ -88,7 +88,7 @@ const CustomizeOptionsForm = ({ dress_id = null }) => {
           <h5 className="font-medium">Measurements</h5>
           <p className="text-sm">Measurements must be provided in inches</p>
         </div>
-        <div className="grid grid-cols-4 gap-4 text-sm">
+        <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-4 text-sm">
           <div className="space-y-2 relative">
             <input
               type="number"
