@@ -30,22 +30,22 @@ const CustomizeOptionsForm = ({ dress_id = null }) => {
     <form className="flex flex-col gap-6" onSubmit={handleSubmit}>
       <input type="hidden" name="dress_id" value={dress_id} />
       {customizeOptions?.map((item) => (
-        <div key={item.key}>
+        <div key={item.name}>
           <h5 className="font-medium mb-4">{item.name}</h5>
           <div className="flex flex-wrap gap-2 sm:gap-6 text-xs text-center">
             <label
-              htmlFor={`default-${item.key}`}
+              htmlFor={`default-${item.name}`}
               className="block h-16 sm:h-20 relative cursor-pointer mb-6"
             >
               <input
                 type="radio"
-                value={`default-${item.key}`}
-                name={item.key}
-                id={`default-${item.key}`}
+                value={`default`}
+                name={item.name}
+                id={`default-${item.name}`}
                 defaultChecked
                 className="hidden peer"
                 onChange={() =>
-                  updateSelectedOption(item.key, `default-${item.key}`)
+                  updateSelectedOption(item.name, `default-${item.name}`)
                 }
               />
               <PiCheckCircleFill className="text-lg text-primary-black absolute -top-2 left-1/2 -translate-x-1/2 opacity-0 peer-checked:opacity-95 transition-opacity duration-75" />
@@ -57,17 +57,17 @@ const CustomizeOptionsForm = ({ dress_id = null }) => {
 
             {item?.types.map((type) => (
               <label
-                htmlFor={type.value}
+                htmlFor={type.name}
                 className="block h-16 sm:h-20 mb-6 relative cursor-pointer"
-                key={type.value}
+                key={type.name}
               >
                 <input
                   type="radio"
-                  value={type.value}
-                  name={item.key}
-                  id={type.value}
+                  value={type.name}
+                  name={item.name}
+                  id={type.name}
                   className="hidden peer"
-                  onChange={() => updateSelectedOption(item.key, type.value)}
+                  onChange={() => updateSelectedOption(item.name, type.name)}
                 />
                 <PiCheckCircleFill className="text-lg text-primary-black absolute -top-2 left-1/2 -translate-x-1/2 opacity-0 peer-checked:opacity-95 transition-opacity duration-75" />
 
@@ -92,14 +92,14 @@ const CustomizeOptionsForm = ({ dress_id = null }) => {
           <div className="space-y-2 relative">
             <input
               type="number"
-              id="chest"
-              name="chest"
+              id="Chest"
+              name="Chest"
               autoComplete="off"
               required
               placeholder="Chest"
               className="peer floating-input"
             />
-            <label htmlFor="chest" className="floating-label">
+            <label htmlFor="Chest" className="floating-label">
               Chest
             </label>
           </div>
@@ -107,14 +107,14 @@ const CustomizeOptionsForm = ({ dress_id = null }) => {
           <div className="space-y-2 relative">
             <input
               type="number"
-              id="waist"
-              name="waist"
+              id="Waist"
+              name="Waist"
               autoComplete="off"
               required
               placeholder="Waist"
               className="peer floating-input"
             />
-            <label htmlFor="waist" className="floating-label">
+            <label htmlFor="Waist" className="floating-label">
               Waist
             </label>
           </div>
@@ -122,14 +122,14 @@ const CustomizeOptionsForm = ({ dress_id = null }) => {
           <div className="space-y-2 relative">
             <input
               type="number"
-              id="sleeve"
-              name="sleeve"
+              id="Sleeve"
+              name="Sleeve"
               autoComplete="off"
               required
               placeholder="Sleeve"
               className="peer floating-input"
             />
-            <label htmlFor="sleeve" className="floating-label">
+            <label htmlFor="Sleeve" className="floating-label">
               Sleeve
             </label>
           </div>
@@ -137,14 +137,14 @@ const CustomizeOptionsForm = ({ dress_id = null }) => {
           <div className="space-y-2 relative">
             <input
               type="number"
-              id="long"
-              name="long"
+              id="Long"
+              name="Long"
               autoComplete="off"
               required
               placeholder="Long"
               className="peer floating-input"
             />
-            <label htmlFor="long" className="floating-label">
+            <label htmlFor="Long" className="floating-label">
               Long
             </label>
           </div>
@@ -155,15 +155,15 @@ const CustomizeOptionsForm = ({ dress_id = null }) => {
         <h5 className="font-medium">Any Special Request/Info</h5>
         <div className="space-y-2 relative">
           <textarea
-            id="request"
-            name="request"
+            id="Request"
+            name="Request"
             autoComplete="off"
             placeholder="Request"
             defaultValue={""}
             rows="2"
             className="peer floating-input"
           ></textarea>
-          <label htmlFor="request" className="floating-label">
+          <label htmlFor="Request" className="floating-label">
             Request
           </label>
         </div>
