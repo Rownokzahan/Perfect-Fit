@@ -5,9 +5,11 @@ import Footer from "../shared/Footer";
 const UserLayout = () => {
   return (
     <>
-      <Navbar/>
-      <Outlet />
-      <Footer/>
+      <Navbar />
+      <div className="min-h-screen">
+        <Outlet />
+      </div>
+      <Footer />
     </>
   );
 };

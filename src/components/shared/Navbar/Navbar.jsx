@@ -47,12 +47,12 @@ const Navbar = () => {
 
   const userNavItems = (
     <>
-      <ActiveLink to={"/wish-list"}>
+      <ActiveLink to={"/profile"}>
         <div>
           <HiOutlineUserCircle />
         </div>
       </ActiveLink>
-      <ActiveLink to={"/wish-list"}>
+      <ActiveLink to={"/wishlist"}>
         <div className="relative">
           <HiOutlineHeart />
           <span className="absolute -top-2 -right-2 text-xs bg-primary px-1 rounded-full font-medium">

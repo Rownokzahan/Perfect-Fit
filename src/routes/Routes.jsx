@@ -4,6 +4,7 @@ import Home from "../pages/UserPages/Home/Home";
 import Dresses from "../pages/UserPages/Dresses/Dresses";
 import Customize from "../pages/UserPages/Customize/Customize";
 import Cart from "../pages/UserPages/Cart/Cart";
+import Wishlist from "../pages/UserPages/Wishlist/Wishlist";
 
 const routes = createBrowserRouter([
   {
@@ -25,6 +26,10 @@ const routes = createBrowserRouter([
       {
         path: "/cart",
         element: <Cart />,
+      },
+      {
+        path: "/wishlist",
+        element: <Wishlist />,
       },
     ],
   },
