@@ -5,6 +5,9 @@ import Dresses from "../pages/UserPages/Dresses/Dresses";
 import Customize from "../pages/UserPages/Customize/Customize";
 import Cart from "../pages/UserPages/Cart/Cart";
 import Wishlist from "../pages/UserPages/Wishlist/Wishlist";
+import AuthLayout from "../components/layouts/AuthLayout";
+import Signup from "../pages/Auth/Signup";
+import Login from "../pages/Auth/Login";
 
 const routes = createBrowserRouter([
   {
@@ -30,6 +33,20 @@ const routes = createBrowserRouter([
       {
         path: "/wishlist",
         element: <Wishlist />,
+      },
+    ],
+  },
+  {
+    path: "/",
+    element: <AuthLayout />,
+    children: [
+      {
+        path: "/signup",
+        element: <Signup />,
+      },
+      {
+        path: "/login",
+        element: <Login />,
       },
     ],
   },

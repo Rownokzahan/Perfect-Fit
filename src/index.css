@@ -42,4 +42,8 @@
   .button-round-white {
     @apply button-white p-2 rounded-full;
   }
+
+  .button-round-black {
+    @apply button-black-solid p-2 rounded-full;
+  }
 }
