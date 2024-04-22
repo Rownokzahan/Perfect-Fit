@@ -40,7 +40,7 @@ const Navbar = () => {
     <>
       <ActiveLink to={"/"}>Home</ActiveLink>
       <ActiveLink to={"/dresses"}>Dresses</ActiveLink>
-      <ActiveLink to={"/create-new"}>Create New</ActiveLink>
+      <ActiveLink to={"/custom-dress"}>Custom Dress</ActiveLink>
       <ActiveLink to={"/about-us"}>About Us</ActiveLink>
     </>
   );
@@ -75,7 +75,7 @@ const Navbar = () => {
     <>
       {/* Navbar for large screen and sticks when it is scrolled up */}
       <nav
-        className={`hidden lg:flex justify-between px-10 py-4 w-full ${
+        className={`hidden lg:flex justify-between px-10 xl:px-20 py-4 w-full ${
           scrolled
             ? "fixed top-0 bg-primary-white text-primary-black border-b"
             : isHomePage

@@ -34,7 +34,7 @@ const Customize = () => {
           <h3 className="text-xl text-center font-medium text-secondary-black">
             Customize Dress Styles
           </h3>
-          <CustomizeOptionsForm dress_id={dress_id} />
+          <CustomizeOptionsForm  dress_id={dress_id} />
         </div>
       </div>
     </Container>
