@@ -47,7 +47,7 @@ const Navbar = () => {
 
   const userNavItems = (
     <>
-      <ActiveLink to={"/profile"}>
+      <ActiveLink to={"/admin/dashboard"}>
         <div>
           <HiOutlineUserCircle />
         </div>

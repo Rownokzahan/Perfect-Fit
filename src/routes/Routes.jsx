@@ -9,6 +9,13 @@ import Wishlist from "../pages/UserPages/Wishlist/Wishlist";
 import AuthLayout from "../components/layouts/AuthLayout";
 import Signup from "../pages/Auth/Signup";
 import Login from "../pages/Auth/Login";
+import AdminLayout from "../components/layouts/AdminLayout";
+import Dashboard from "../pages/AdminPages/Dashboard/Dashboard";
+import Products from "../pages/AdminPages/Products/Products";
+import AddProduct from "../pages/AdminPages/AddProduct/AddProduct";
+import Orders from "../pages/AdminPages/Orders/Orders";
+import Customers from "../pages/AdminPages/Customers/Customers";
+import EditProduct from "../pages/AdminPages/EditProduct/EditProduct";
 
 const routes = createBrowserRouter([
   {
@@ -52,6 +59,37 @@ const routes = createBrowserRouter([
       {
         path: "/login",
         element: <Login />,
+      },
+    ],
+  },
+
+  {
+    path: "/admin",
+    element: <AdminLayout />,
+    children: [
+      {
+        path: "dashboard",
+        element: <Dashboard />,
+      },
+      {
+        path: "products",
+        element: <Products />,
+      },
+      {
+        path: "add-product",
+        element: <AddProduct />,
+      },
+      {
+        path: "edit-product",
+        element: <EditProduct />,
+      },
+      {
+        path: "orders",
+        element: <Orders />,
+      },
+      {
+        path: "customers",
+        element: <Customers />,
       },
     ],
   },
