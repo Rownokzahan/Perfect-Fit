@@ -9,10 +9,10 @@ export default {
       colors: {
         "primary-black": "#0d0609",
         "secondary-black": "#9b9799",
-        "primary-white": "#fdf6f9",
+        "primary-white": "#f8f9fa",
         "secondary-white": "#f7dce5",
         primary: "#DF6C92",
-        "primary-light": "#e897b2",
+        "primary-light": "#fcf3f7",
         "primary-dark": "#9d4c67",
       },
       transitionProperty: {

@@ -7,8 +7,8 @@ const ActiveLink = ({ item }) => {
   return (
     <NavLink to={path}>
       <div
-        className={`flex items-center gap-4 p-3 rounded ${
-          isActive ? "bg-primary-white" : "hover:bg-gray-100"
+        className={`flex items-center gap-4 px-4 py-3 rounded ${
+          isActive ? "bg-primary-light" : "hover:bg-gray-100"
         }`}
       >
         <div

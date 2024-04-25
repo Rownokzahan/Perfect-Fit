@@ -6,9 +6,6 @@ const TopBar = () => {
         alt=""
         className="w-10 rounded-full border"
       />
-      <button className="py-2 px-4 bg-primary-black rounded text-primary-white font-semibold">
-        Logout
-      </button>
     </div>
   );
 };
