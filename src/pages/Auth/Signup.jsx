@@ -1,14 +1,12 @@
-import { Helmet } from "react-helmet-async";
+import useTitle from "../../hooks/useTitle";
 import Title from "../../components/ui/Title";
 import SignupForm from "../../components/forms/SignupForm";
 
 const Signup = () => {
+  useTitle("Signup");
+
   return (
     <>
-      <Helmet>
-        <title>Perfect Fit | Signup</title>
-      </Helmet>
-
       <Title>Signup</Title>
       <SignupForm />
 

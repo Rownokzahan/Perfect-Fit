@@ -13,10 +13,10 @@ const AuthLayout = () => {
             <img
               src="https://i.pinimg.com/474x/58/a2/60/58a260b014718fe5199e61157a21086b.jpg"
               alt=""
-              className="hidden lg:block w-full h-full object-cover"
+              className="hidden lg:block w-full h-full object-cover lg:rounded-s"
             />
 
-            <div className="h-full lg:p-16 lg:border">
+            <div className="h-full lg:p-16 lg:border lg:rounded-e">
               <Outlet />
 
               <div className="mt-16">
