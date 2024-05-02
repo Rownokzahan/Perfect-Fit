@@ -11,7 +11,7 @@ import { setUser, setLoading, setError } from "../auth/authSlice";
 
 const auth = getAuth(app);
 
-export const signup = async (name, email, password, dispatch) => {
+export const signUp = async (name, email, password, dispatch) => {
   try {
     dispatch(setLoading(true)); // Set loading state to true
     const userCredential = await createUserWithEmailAndPassword(

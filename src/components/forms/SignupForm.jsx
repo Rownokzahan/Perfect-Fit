@@ -1,58 +1,76 @@
-import { useForm } from "react-hook-form";
+import { useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { signup } from "../../redux/features/api/authApi";
+import { useForm } from "react-hook-form";
+import { signUp } from "../../redux/features/api/authApi";
+import { useCreateUserMutation } from "../../redux/features/api/userApi";
 import { AiOutlineExclamationCircle } from "react-icons/ai";
 import { ImSpinner9 } from "react-icons/im";
-import { useCreateUserMutation } from "../../redux/features/api/userAPI";
 
 const SignupForm = () => {
-  const dispatch = useDispatch();
-  const { error: signupError, loading } = useSelector(
-    (state) => state.authSlice
-  );
-  const [saveUserToDB, { error }] = useCreateUserMutation();
-
-  const navigate = useNavigate();
-  const location = useLocation();
-  const requestedPage = location?.state?.from?.pathname || "/";
-
   const {
     register,
     handleSubmit,
     formState: { errors },
   } = useForm();
+  
+  const dispatch = useDispatch();
+  const { error: signupError, loading } = useSelector(
+    (state) => state.authSlice
+  );
+  const [saveUserToDatabase] = useCreateUserMutation();
+  const [databaseError, setDatabaseError] = useState(null);
 
-  const onSubmit = (data) => {
+  const navigate = useNavigate();
+  const location = useLocation();
+  const requestedPage = location?.state?.from?.pathname || "/";
+
+
+  // Form submission handler
+  const onSubmit = async (data) => {
     const name = data?.name;
     const email = data?.email;
     const password = data?.password;
 
-    const user = signup(name, email, password, dispatch);
+    // Sign up user
+    const user = await signUp(name, email, password, dispatch);
     if (signupError) {
       return;
     }
 
-    saveUserToDB(user);
-    if (error) {
-      console.log(error);
-      console.log(error);
-    }
-
-    navigate(requestedPage);
+    // Save user to database
+    await saveUserToDatabase(user)
+      .unwrap()
+      .then((payload) => {
+        console.log("fulfilled", payload);
+        navigate(requestedPage); // Redirect to the requested page
+      })
+      .catch((error) => {
+        console.error("rejected", error);
+        const errorMessage =
+          "Something went wrong with the login. Please try again.";
+        setDatabaseError(errorMessage);
+      });
   };
 
   return (
     <>
+      {/* Display signup or database error messages */}
       {signupError ? (
         <p className="text-red-600 font-medium text-center text-sm relative -top-10">
           {signupError}
+        </p>
+      ) : databaseError ? (
+        <p className="text-red-600 font-medium text-center text-sm relative -top-10">
+          {databaseError}
         </p>
       ) : (
         <></>
       )}
 
+      {/* Signup form */}
       <form className="space-y-8" onSubmit={handleSubmit(onSubmit)}>
+        {/* Name input field */}
         <div className="space-y-2 relative">
           <input
             type="text"
@@ -77,6 +95,7 @@ const SignupForm = () => {
           </label>
         </div>
 
+        {/* Email input field */}
         <div className="space-y-2 relative">
           <input
             type="email"
@@ -101,6 +120,7 @@ const SignupForm = () => {
           </label>
         </div>
 
+        {/* Password input field */}
         <div className="space-y-2 relative">
           <input
             type="password"
@@ -132,6 +152,7 @@ const SignupForm = () => {
           </label>
         </div>
 
+        {/* Submit button */}
         {loading ? (
           <button
             type="button"
