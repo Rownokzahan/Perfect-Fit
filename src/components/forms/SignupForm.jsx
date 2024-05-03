@@ -2,7 +2,7 @@ import { useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { useForm } from "react-hook-form";
-import { signUp } from "../../redux/features/api/authApi";
+import { signupWithEmail } from "../../redux/features/auth/authSlice";
 import { useCreateUserMutation } from "../../redux/features/api/userApi";
 import { AiOutlineExclamationCircle } from "react-icons/ai";
 import { ImSpinner9 } from "react-icons/im";
@@ -12,57 +12,59 @@ const SignupForm = () => {
     register,
     handleSubmit,
     formState: { errors },
+    reset,
   } = useForm();
-  
-  const dispatch = useDispatch();
+
   const { error: signupError, loading } = useSelector(
     (state) => state.authSlice
   );
   const [saveUserToDatabase] = useCreateUserMutation();
   const [databaseError, setDatabaseError] = useState(null);
+  const dispatch = useDispatch();
 
   const navigate = useNavigate();
   const location = useLocation();
   const requestedPage = location?.state?.from?.pathname || "/";
 
+  console.log(requestedPage);
 
   // Form submission handler
   const onSubmit = async (data) => {
+    setDatabaseError(null);
+
     const name = data?.name;
     const email = data?.email;
     const password = data?.password;
 
-    // Sign up user
-    const user = await signUp(name, email, password, dispatch);
-    if (signupError) {
-      return;
-    }
-
-    // Save user to database
-    await saveUserToDatabase(user)
+    // Signup user
+    dispatch(signupWithEmail({ name, email, password }))
       .unwrap()
-      .then((payload) => {
-        console.log("fulfilled", payload);
-        navigate(requestedPage); // Redirect to the requested page
+      .then((user) => {
+        // Save user to database
+        saveUserToDatabase(user)
+          .unwrap()
+          .then(() => {
+            navigate(requestedPage); // Redirect to the requested page
+          })
+          .catch((error) => {
+            console.error("rejected", error);
+            const errorMessage = "Something went wrong. Please try again.";
+            setDatabaseError(errorMessage);
+          });
+
+        reset();
       })
-      .catch((error) => {
-        console.error("rejected", error);
-        const errorMessage =
-          "Something went wrong with the login. Please try again.";
-        setDatabaseError(errorMessage);
+      .catch(() => {
+        return;
       });
   };
 
   return (
     <>
       {/* Display signup or database error messages */}
-      {signupError ? (
+      {signupError || databaseError ? (
         <p className="text-red-600 font-medium text-center text-sm relative -top-10">
-          {signupError}
-        </p>
-      ) : databaseError ? (
-        <p className="text-red-600 font-medium text-center text-sm relative -top-10">
-          {databaseError}
+          {signupError ? signupError : databaseError}
         </p>
       ) : (
         <></>
