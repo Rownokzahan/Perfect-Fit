@@ -1,27 +1,21 @@
 import { useForm } from "react-hook-form";
-import { useLocation, useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { loginWithEmail } from "../../redux/features/auth/authSlice";
 import { AiOutlineExclamationCircle } from "react-icons/ai";
 import { ImSpinner9 } from "react-icons/im";
+import { useNavigate } from "react-router-dom";
 
-const LoginForm = () => {
+const LoginForm = ({requestedPath}) => {
   const {
     register,
     handleSubmit,
     reset,
     formState: { errors },
   } = useForm();
-
-  const { error: loginError, loading } = useSelector(
-    (state) => state.authSlice
-  );
-  const dispatch = useDispatch();
-
   const navigate = useNavigate();
-  const location = useLocation();
-  const requestedPage = location?.state?.from?.pathname || "/";
-  console.log(requestedPage);
+
+  const { error: loginError, loading } = useSelector((state) => state.auth);
+  const dispatch = useDispatch();
 
   // Form submission handler
   const onSubmit = async (data) => {
@@ -33,7 +27,7 @@ const LoginForm = () => {
       .unwrap()
       .then(() => {
         reset();
-        navigate(requestedPage);
+        navigate(requestedPath);
       })
       .catch(() => {
         return;

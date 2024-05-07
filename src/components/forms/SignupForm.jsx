@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { useLocation, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { useForm } from "react-hook-form";
 import { signupWithEmail } from "../../redux/features/auth/authSlice";
@@ -7,26 +7,19 @@ import { useCreateUserMutation } from "../../redux/features/api/userApi";
 import { AiOutlineExclamationCircle } from "react-icons/ai";
 import { ImSpinner9 } from "react-icons/im";
 
-const SignupForm = () => {
+const SignupForm = ({requestedPath}) => {
   const {
     register,
     handleSubmit,
     formState: { errors },
     reset,
   } = useForm();
+  const navigate = useNavigate();
 
-  const { error: signupError, loading } = useSelector(
-    (state) => state.authSlice
-  );
+  const { error: signupError, loading } = useSelector((state) => state.auth);
   const [saveUserToDatabase] = useCreateUserMutation();
   const [databaseError, setDatabaseError] = useState(null);
   const dispatch = useDispatch();
-
-  const navigate = useNavigate();
-  const location = useLocation();
-  const requestedPage = location?.state?.from?.pathname || "/";
-
-  console.log(requestedPage);
 
   // Form submission handler
   const onSubmit = async (data) => {
@@ -44,7 +37,7 @@ const SignupForm = () => {
         saveUserToDatabase(user)
           .unwrap()
           .then(() => {
-            navigate(requestedPage); // Redirect to the requested page
+            navigate(requestedPath); // Redirect to the requested page
           })
           .catch((error) => {
             console.error("rejected", error);
