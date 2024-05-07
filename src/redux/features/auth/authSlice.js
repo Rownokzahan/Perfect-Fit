@@ -6,31 +6,42 @@ import {
   updateProfile,
   signInWithEmailAndPassword,
   signOut,
+  onAuthStateChanged,
 } from "firebase/auth";
 
 const auth = getAuth(app);
 
 const initialState = {
   user: null,
-  loading: false,
+  loading: true,
   error: null,
 };
 
 export const getCurrentUser = createAsyncThunk(
   "authSlice/getCurrentUser",
   async () => {
-    const data = auth.currentUser;
-    if (data) {
-      const user = {
-        _id: data.uid,
-        name: data.displayName,
-        email: data.email,
-        image: data.photoURL,
-        //role: "customer",
-        //TODO: get role from database
-      };
-      return user;
-    }
+    return new Promise((resolve, reject) => {
+      onAuthStateChanged(
+        auth,
+        (data) => {
+          if (data) {
+            const user = {
+              _id: data.uid,
+              name: data.displayName,
+              email: data.email,
+              image: data.photoURL,
+              role: "customer",
+              // TODO: get role from database
+            };
+
+            resolve(user); //Return user
+          } else {
+            resolve(null); // Return null if user is not logged in
+          }
+        },
+        reject
+      );
+    });
   }
 );
 
