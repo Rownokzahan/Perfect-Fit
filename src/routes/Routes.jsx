@@ -16,6 +16,7 @@ import AddProduct from "../pages/AdminPages/AddProduct/AddProduct";
 import Orders from "../pages/AdminPages/Orders/Orders";
 import Customers from "../pages/AdminPages/Customers/Customers";
 import EditProduct from "../pages/AdminPages/EditProduct/EditProduct";
+import PrivateRoute from "./PrivateRoute";
 
 const routes = createBrowserRouter([
   {
@@ -32,19 +33,35 @@ const routes = createBrowserRouter([
       },
       {
         path: "/custom-dress",
-        element: <CustomDress />,
+        element: (
+          <PrivateRoute>
+            <CustomDress />
+          </PrivateRoute>
+        ),
       },
       {
         path: "/dresses/:dress_id/customize",
-        element: <Customize />,
+        element: (
+          <PrivateRoute>
+            <Customize />
+          </PrivateRoute>
+        ),
       },
       {
         path: "/cart",
-        element: <Cart />,
+        element: (
+          <PrivateRoute>
+            <Cart />
+          </PrivateRoute>
+        ),
       },
       {
         path: "/wishlist",
-        element: <Wishlist />,
+        element: (
+          <PrivateRoute>
+            <Wishlist />
+          </PrivateRoute>
+        ),
       },
     ],
   },
