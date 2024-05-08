@@ -7,7 +7,7 @@ import { useCreateUserMutation } from "../../redux/features/api/userApi";
 import { AiOutlineExclamationCircle } from "react-icons/ai";
 import { ImSpinner9 } from "react-icons/im";
 
-const SignupForm = ({requestedPath}) => {
+const SignupForm = ({ requestedPath }) => {
   const {
     register,
     handleSubmit,
@@ -16,13 +16,15 @@ const SignupForm = ({requestedPath}) => {
   } = useForm();
   const navigate = useNavigate();
 
-  const { error: signupError, loading } = useSelector((state) => state.auth);
+  const { error: signupError } = useSelector((state) => state.auth);
   const [saveUserToDatabase] = useCreateUserMutation();
   const [databaseError, setDatabaseError] = useState(null);
+  const [loading, setLoading] = useState(false);
   const dispatch = useDispatch();
 
   // Form submission handler
   const onSubmit = async (data) => {
+    setLoading(true);
     setDatabaseError(null);
 
     const name = data?.name;
@@ -37,17 +39,20 @@ const SignupForm = ({requestedPath}) => {
         saveUserToDatabase(user)
           .unwrap()
           .then(() => {
+            setLoading(false);
             navigate(requestedPath); // Redirect to the requested page
           })
           .catch((error) => {
             console.error("rejected", error);
             const errorMessage = "Something went wrong. Please try again.";
             setDatabaseError(errorMessage);
+            setLoading(false);
           });
 
         reset();
       })
       .catch(() => {
+        setLoading(false);
         return;
       });
   };

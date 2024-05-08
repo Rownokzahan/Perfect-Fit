@@ -4,8 +4,9 @@ import { loginWithEmail } from "../../redux/features/auth/authSlice";
 import { AiOutlineExclamationCircle } from "react-icons/ai";
 import { ImSpinner9 } from "react-icons/im";
 import { useNavigate } from "react-router-dom";
+import { useState } from "react";
 
-const LoginForm = ({requestedPath}) => {
+const LoginForm = ({ requestedPath }) => {
   const {
     register,
     handleSubmit,
@@ -13,12 +14,14 @@ const LoginForm = ({requestedPath}) => {
     formState: { errors },
   } = useForm();
   const navigate = useNavigate();
-
-  const { error: loginError, loading } = useSelector((state) => state.auth);
+  const [loading, setLoading] = useState(false);
+  const { error: loginError } = useSelector((state) => state.auth);
   const dispatch = useDispatch();
 
   // Form submission handler
   const onSubmit = async (data) => {
+    setLoading(true);
+
     const email = data?.email;
     const password = data?.password;
 
@@ -27,9 +30,11 @@ const LoginForm = ({requestedPath}) => {
       .unwrap()
       .then(() => {
         reset();
+        setLoading(false);
         navigate(requestedPath);
       })
       .catch(() => {
+        setLoading(false);
         return;
       });
   };
@@ -115,7 +120,7 @@ const LoginForm = ({requestedPath}) => {
           </button>
         ) : (
           <button type="submit" className="button-black-solid w-full">
-            Sign Up
+            Login
           </button>
         )}
       </form>
