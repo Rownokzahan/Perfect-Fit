@@ -16,6 +16,7 @@ const MeasurementInputs = ({ register, errors }) => {
               type="number"
               id={input}
               name={input}
+              min="0"
               autoComplete="off"
               placeholder={input}
               className={`peer floating-input ${
