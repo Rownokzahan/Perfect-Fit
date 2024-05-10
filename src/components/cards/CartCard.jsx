@@ -1,31 +1,54 @@
 import { RiDeleteBinLine } from "react-icons/ri";
+import DressAssembler from "../shared/DressAssembler";
 
 const CartCard = ({ item }) => {
+  const {
+    image,
+    name,
+    Bodice,
+    Sleeve,
+    "Skirt Style": SkirtStyle, 
+    Chest,
+    Waist,
+    Long,
+    price,
+  } = item || {};
+
   return (
-    <div className="grid grid-cols-3 gap-4 pt-10 relative">
-      <img src={item.dress.image} className="w-full max-h-[230px] object-cover" alt="" />
+    <div className="grid grid-cols-3 gap-4 py-8 relative">
+      {image === "Custom Dress" ? (
+        <DressAssembler
+          bodice={Bodice}
+          sleeve={Sleeve}
+          skirt={SkirtStyle}
+        />
+      ) : (
+        <img src={image} className="w-full max-h-[230px] object-cover" alt="" />
+      )}
+
       <div className="space-y-2 col-span-2">
-        <h5>{item.dress.name}</h5>
+        <h5>{name}</h5>
+
         <div className="text-sm">
           <h6 className="font-medium">Style</h6>
-          <p>Bodice: {item.Bodice}</p>
-          <p>Sleeve: {item.Sleeve}</p>
-          <p>Skirt Style: {item["Skirt Style"]}</p>
+          <p>Bodice: {Bodice}</p>
+          <p>Sleeve: {Sleeve}</p>
+          <p>Skirt Style: {SkirtStyle}</p>
         </div>
         <div className="text-sm">
           <h6 className="font-medium">Size</h6>
-          <p>Chest: {item.Chest}</p>
-          <p>Waist: {item.Waist}</p>
-          <p>Long: {item.Long}</p>
+          <p>Chest: {Chest}</p>
+          <p>Waist: {Waist}</p>
+          <p>Long: {Long}</p>
         </div>
 
         <div className="flex items-center font-medium gap-2">
-          <span>${item.dress.price}</span>
+          <span>${price}</span>
           <span>|</span>
           <span className="text-xs text-secondary-black mb-px">QTY - 1</span>
         </div>
 
-        <button className="text-xl text-red-600 absolute bottom-0 right-0">
+        <button className="text-xl text-red-600 absolute bottom-6 right-4">
           <RiDeleteBinLine />
         </button>
       </div>
