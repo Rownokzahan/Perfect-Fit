@@ -23,10 +23,14 @@ const CustomDressForm = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
 
   const onSubmit = (data) => {
-    data.user_id = user?._id;
-    console.log(data);
+    const item = {
+      name: "Custom Dress",
+      price: 50,
+      image: "Custom Dress",
+      ...data,
+    }; //TODO: price should be dynamic
 
-    addToCart(data)
+    addToCart({ userId: user?._id, item })
       .unwrap()
       .then(() => {
         reset();

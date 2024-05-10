@@ -53,12 +53,14 @@ const CustomOptionsSelection = ({ register, errors, watch }) => {
         ))}
       </div>
 
-      <div>
+      <div className="flex flex-col">
         <DressAssembler
-          bodice={watch("Bodice",null)}
-          sleeve={watch("Sleeve",null)}
-          skirt={watch("Skirt Style",null)}
+          bodice={watch("Bodice", null)}
+          sleeve={watch("Sleeve", null)}
+          skirt={watch("Skirt Style", null)}
         />
+
+        <h3 className="h-full -mb-20 text-2xl text-center font-medium">$50</h3>
       </div>
     </div>
   );
