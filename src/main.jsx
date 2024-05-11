@@ -6,6 +6,7 @@ import { RouterProvider } from "react-router-dom";
 import { HelmetProvider } from "react-helmet-async";
 import { Provider } from "react-redux";
 import { store } from "./redux/store";
+import { Toaster } from "react-hot-toast";
 
 ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
@@ -13,6 +14,7 @@ ReactDOM.createRoot(document.getElementById("root")).render(
       <Provider store={store}>
         <div className="max-w-[1536px] mx-auto bg-primary-white text-primary-black text-sm sm:text-base">
           <RouterProvider router={routes} />
+          <Toaster />
         </div>
       </Provider>
     </HelmetProvider>
