@@ -1,16 +1,10 @@
-import { TbShoppingBagSearch } from "react-icons/tb";
+import { LuPackageSearch } from "react-icons/lu";
 
 const NoProduct = () => {
   return (
-    <div className="mt-24 text-center">
-      <TbShoppingBagSearch className="text-8xl mx-auto mb-8" />
-      <h3 className="text-xl font-semibold mb-2">Empty Shopping Bag</h3>
-      <p className="mb-12">
-        Looks like you haven&apos;t added anything to your shopping bag
-      </p>
-      <a href="/dresses" className="button-black-solid">
-        Continue Shopping
-      </a>
+    <div className="text-center absolute top-1/2 -translate-y-1/2 left-1/2 -translate-x-1/2">
+      <LuPackageSearch className="text-6xl mx-auto" />
+      <h5 className="mt-4 font-medium text-xl">No product found.</h5>
     </div>
   );
 };

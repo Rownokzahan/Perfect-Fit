@@ -1,29 +1,37 @@
-import { useEffect, useState } from "react";
-import { Link, useLocation } from "react-router-dom";
+import { useState } from "react";
+import { useLocation } from "react-router-dom";
 import useTitle from "../../../hooks/useTitle";
 import { useGetDressesQuery } from "../../../redux/features/api/dressApi";
 import Spinner from "../../../components/ui/Spinner";
 import NoProduct from "./components/NoProduct";
-import Title from "../../../components/ui/Title";
-import CategoryDropdown from "../../../components/dropdowns/CategoryDropdown";
-import SortDropdown from "../../../components/dropdowns/SortDropdown";
-import ProductCard from "../../../components/cards/ProductCard";
+import Header from "./components/Header";
+import Filters from "./components/Filters";
+import ProductList from "./components/ProductList";
 import Pagination from "../../../components/ui/Pagination";
 
 const Products = () => {
   useTitle("Products");
 
   const { data, isLoading, error } = useGetDressesQuery();
-  const [dresses, setDresses] = useState([]);
+  let dresses = data;
 
   const location = useLocation();
   const params = new URLSearchParams(location.search);
   const category = params.get("category");
+  const sortBy = params.get("sort");
 
-  let filteredDresses = data;
+  if (category && category !== "all-dress") {
+    const filteredDresses = dresses?.filter(
+      (dress) => dress.category === category
+    );
+    dresses = filteredDresses;
+  }
 
-  if (category) {
-    filteredDresses = data?.filter((dress) => dress.category === category);
+  if (sortBy && category !== "newest") {
+    const filteredDresses = dresses?.filter(
+      (dress) => dress.category === category
+    );
+    dresses = filteredDresses;
   }
 
   // State variables for pagination
@@ -33,64 +41,32 @@ const Products = () => {
   const endIndex = startIndex + itemsPerPage;
 
   // Slice the dresses array based on current page
-  const currentDresses = filteredDresses?.slice(startIndex, endIndex);
-
-  useEffect(() => {
-    if (data) {
-      setDresses(data);
-    }
-  }, [data]);
+  const currentDresses = dresses?.slice(startIndex, endIndex);
 
   if (isLoading) {
     return <Spinner />;
   }
 
-  if (error || !dresses || dresses?.length === 0) {
-    return <NoProduct />;
-  }
-
   return (
     <>
-      {/* Title and Add Product link */}
-      <div className="flex items-start justify-between">
-        <Title position="left">Products</Title>
-        <Link
-          to={"/admin/add-product"}
-          className="py-2 px-4 rounded bg-primary-black text-primary-white hover:bg-primary font-semibold whitespace-nowrap duration-300"
-        >
-          Add Product
-        </Link>
-      </div>
+      <Header />
+      <div className="bg-white min-h-[70vh] border rounded relative">
+        {error || !currentDresses || currentDresses?.length === 0 ? (
+          <NoProduct />
+        ) : (
+          <>
+            <Filters />
+            <ProductList products={currentDresses} />
 
-      <div className="bg-white min-h-screen border rounded">
-        <div className="p-8 border-b flex items-center justify-between">
-          {/* Search bar */}
-          <input
-            type="text"
-            name=""
-            id=""
-            placeholder="Search..."
-            className="text-sm font-medium px-4 py-2 rounded border-2 border-primary-white bg-primary-white focus:bg-white focus:outline-none"
-          />
-          <div className="flex items-center gap-8">
-            <CategoryDropdown />
-            <SortDropdown />
-          </div>
-        </div>
-
-        <div className="p-8 grid grid-cols-4 gap-8">
-          {currentDresses?.map((product) => (
-            <ProductCard key={product._id} product={product} />
-          ))}
-        </div>
+            <Pagination
+              currentPage={currentPage}
+              setCurrentPage={setCurrentPage}
+              totalItems={dresses?.length}
+              itemsPerPage={itemsPerPage}
+            />
+          </>
+        )}
       </div>
-      {/* Pagination component */}
-      <Pagination
-        currentPage={currentPage}
-        setCurrentPage={setCurrentPage}
-        totalItems={filteredDresses?.length}
-        itemsPerPage={itemsPerPage}
-      />
     </>
   );
 };
