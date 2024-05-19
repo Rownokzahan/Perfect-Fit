@@ -7,6 +7,10 @@ const Pagination = ({
   const totalPages = Math.ceil(totalItems / itemsPerPage);
   const pageNumbers = [...Array(totalPages).keys()];
 
+  if (pageNumbers.length < 2) {
+    return;
+  }
+
   return (
     <div className="flex items-center justify-center gap-2 my-12">
       {pageNumbers.map((number) => (

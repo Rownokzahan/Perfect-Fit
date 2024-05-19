@@ -1,23 +1,30 @@
-import { Link } from "react-router-dom";
-import ProductCard from "../../../components/cards/ProductCard";
+import { useEffect, useState } from "react";
+import { Link, useLocation } from "react-router-dom";
+import useTitle from "../../../hooks/useTitle";
+import { useGetDressesQuery } from "../../../redux/features/api/dressApi";
+import Spinner from "../../../components/ui/Spinner";
+import NoProduct from "./components/NoProduct";
 import Title from "../../../components/ui/Title";
-import dresses from "../../../data/dresses";
-import { useState } from "react";
 import CategoryDropdown from "../../../components/dropdowns/CategoryDropdown";
 import SortDropdown from "../../../components/dropdowns/SortDropdown";
+import ProductCard from "../../../components/cards/ProductCard";
 import Pagination from "../../../components/ui/Pagination";
 
 const Products = () => {
-  // Check if dresses data exists and is valid
-  const hasDresses = dresses && Array.isArray(dresses) && dresses.length > 0;
+  useTitle("Products");
 
-  // State variables for category dropdown
-  const [selectedCategory, setSelectedCategory] = useState("All Dress");
-  const [isCategoryDropdownOpen, setIsCategoryDropdownOpen] = useState(false);
+  const { data, isLoading, error } = useGetDressesQuery();
+  const [dresses, setDresses] = useState([]);
 
-  // State variables for sorting dropdown
-  const [selectedSorting, setSelectedSorting] = useState("Newest");
-  const [isSortingDropdownOpen, setIsSortingDropdownOpen] = useState(false);
+  const location = useLocation();
+  const params = new URLSearchParams(location.search);
+  const category = params.get("category");
+
+  let filteredDresses = data;
+
+  if (category) {
+    filteredDresses = data?.filter((dress) => dress.category === category);
+  }
 
   // State variables for pagination
   const [currentPage, setCurrentPage] = useState(0);
@@ -26,7 +33,21 @@ const Products = () => {
   const endIndex = startIndex + itemsPerPage;
 
   // Slice the dresses array based on current page
-  const currentDresses = dresses?.slice(startIndex, endIndex);
+  const currentDresses = filteredDresses?.slice(startIndex, endIndex);
+
+  useEffect(() => {
+    if (data) {
+      setDresses(data);
+    }
+  }, [data]);
+
+  if (isLoading) {
+    return <Spinner />;
+  }
+
+  if (error || !dresses || dresses?.length === 0) {
+    return <NoProduct />;
+  }
 
   return (
     <>
@@ -40,9 +61,10 @@ const Products = () => {
           Add Product
         </Link>
       </div>
-      {/* Search bar, category and sorting dropdowns */}
-      <div className="bg-white border rounded">
+
+      <div className="bg-white min-h-screen border rounded">
         <div className="p-8 border-b flex items-center justify-between">
+          {/* Search bar */}
           <input
             type="text"
             name=""
@@ -51,38 +73,22 @@ const Products = () => {
             className="text-sm font-medium px-4 py-2 rounded border-2 border-primary-white bg-primary-white focus:bg-white focus:outline-none"
           />
           <div className="flex items-center gap-8">
-            {/* Category dropdown */}
-            <CategoryDropdown
-              selectedCategory={selectedCategory}
-              setSelectedCategory={setSelectedCategory}
-              isCategoryDropdownOpen={isCategoryDropdownOpen}
-              setIsCategoryDropdownOpen={setIsCategoryDropdownOpen}
-            />
-            {/* Sorting dropdown */}
-            <SortDropdown
-              selectedSorting={selectedSorting}
-              setSelectedSorting={setSelectedSorting}
-              isSortingDropdownOpen={isSortingDropdownOpen}
-              setIsSortingDropdownOpen={setIsSortingDropdownOpen}
-            />
+            <CategoryDropdown />
+            <SortDropdown />
           </div>
         </div>
-        {/* Display products or message if no products */}
-        {hasDresses ? (
-          <div className="p-8 grid grid-cols-4 gap-8">
-            {currentDresses?.map((product) => (
-              <ProductCard key={product._id} product={product} />
-            ))}
-          </div>
-        ) : (
-          "You have 0 products"
-        )}
+
+        <div className="p-8 grid grid-cols-4 gap-8">
+          {currentDresses?.map((product) => (
+            <ProductCard key={product._id} product={product} />
+          ))}
+        </div>
       </div>
       {/* Pagination component */}
       <Pagination
         currentPage={currentPage}
         setCurrentPage={setCurrentPage}
-        totalItems={dresses.length}
+        totalItems={filteredDresses?.length}
         itemsPerPage={itemsPerPage}
       />
     </>
