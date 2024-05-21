@@ -14,7 +14,7 @@ const Cart = () => {
     return <Spinner />;
   }
 
-  if (data?.items?.length === 0 || error) {
+  if (!data || data?.items?.length === 0 || error) {
     return <EmptyCart />;
   }
 
