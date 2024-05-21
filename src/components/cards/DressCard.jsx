@@ -2,17 +2,17 @@ import { FaRegHeart } from "react-icons/fa";
 import { BiSolidRightArrow } from "react-icons/bi";
 import { Link } from "react-router-dom";
 
-const DressCard = ({ dress, status = "" }) => {
+const DressCard = ({ dress }) => {
   const { _id, name, price, image } = dress ?? {};
 
   return (
-    <div className="relative overflow-hidden group mb-4">
+    <div className="bg-white rounded relative group hover:shadow hover:-mt-1 duration-300">
       <Link to={`/dresses/${_id}/customize`}>
-        <div className="relative overflow-hidden h-52 md:h-96 mb-2 md:mb-4 cursor-pointer">
+        <div className="relative overflow-hidden h-52 md:h-72 rounded-t cursor-pointer">
           <img
             src={image}
             alt={name}
-            className="w-full h-full object-cover scale-100 group-hover:scale-105 duration-300"
+            className="w-full h-52 md:h-96 rounded-t object-cover scale-100 group-hover:scale-105 duration-300"
           />
           {/* Buy Now Button */}
           <button className="button-white absolute -bottom-2 group-hover:bottom-4 right-1/2 translate-x-1/2 opacity-0 group-hover:opacity-100 transition-all duration-300">
@@ -21,17 +21,10 @@ const DressCard = ({ dress, status = "" }) => {
         </div>
       </Link>
 
-      <div className="font-semibold space-y-1 md:space-y-2">
-        <h4 className="md:text-lg">{name}</h4>
-        <h5>${price}</h5>
+      <div className="font-medium space-y-1 md:space-y-2 p-2 sm:p-4">
+        <h4 className="truncate text-xs sm:text-sm">{name}</h4>
+        <h5 className="text-sm sm:text-base">${price}</h5>
       </div>
-
-      {/* Status */}
-      {status !== "" && (
-        <div className="bg-primary-black text-primary-white font-medium px-2 py-px absolute top-4 left-4">
-          {status}
-        </div>
-      )}
 
       <div className="absolute top-4 -right-4 group-hover:right-4 opacity-0 group-hover:opacity-100 duration-300">
         <div className="group/wishlist relative">

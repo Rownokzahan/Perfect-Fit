@@ -1,38 +1,47 @@
 import { useState } from "react";
-import DressCard from "../../../components/cards/DressCard";
+import useTitle from "../../../hooks/useTitle";
+import useDresses from "../../../hooks/useDresses";
+import Spinner from "../../../components/ui/Spinner";
 import Container from "../../../components/ui/Container";
-import dresses from "../Home/data/dresses";
-import SortBy from "./components/SortBy";
+import Filters from "../../../components/shared/Filters";
+import NoDress from "./components/NoDress";
+import DressList from "./components/DressList";
+import Pagination from "../../../components/ui/Pagination";
 
 const Dresses = () => {
-  const [sortBy, setSortBy] = useState("newest");
-  const [showSortDropdown, setShowSortDropdown] = useState(false);
+  useTitle("Products");
+  const { dresses, isLoading, error } = useDresses();
 
-  const handleSortChange = (key) => {
-    setSortBy(key);
-    setShowSortDropdown(false);
-  };
+  // State variables for pagination
+  const [currentPage, setCurrentPage] = useState(0);
+  const itemsPerPage = 8;
+  const startIndex = currentPage * itemsPerPage;
+  const endIndex = startIndex + itemsPerPage;
+
+  // Slice the dresses array based on current page
+  const currentDresses = dresses?.slice(startIndex, endIndex);
+
+  if (isLoading) {
+    return <Spinner />;
+  }
 
   return (
-    <Container marginTop={0}>
-      <div className="my-12 flex flex-col-reverse sm:flex-row justify-between items-center gap-8">
-        <h4 className="text-lg">
-          Total Dresses:
-          <span className="text-primary"> {dresses ? dresses.length : 0}</span>
-        </h4>
-        <SortBy
-          sortBy={sortBy}
-          handleSortChange={handleSortChange}
-          showSortDropdown={showSortDropdown}
-          setShowSortDropdown={setShowSortDropdown}
-        />
-      </div>
+    <Container marginTop={12}>
+      <Filters />
 
-      <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 md:gap-12">
-        {dresses.map((dress) => (
-          <DressCard key={dress._id} dress={dress} />
-        ))}
-      </div>
+      {!currentDresses || currentDresses?.length === 0 || error ? (
+        <NoDress />
+      ) : (
+        <>
+          <DressList dresses={currentDresses} />
+          <Pagination
+            currentPage={currentPage}
+            setCurrentPage={setCurrentPage}
+            totalItems={dresses?.length}
+            itemsPerPage={itemsPerPage}
+          />
+        </>
+      )}
     </Container>
   );
 };
