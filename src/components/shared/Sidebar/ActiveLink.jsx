@@ -3,7 +3,7 @@ import { NavLink, useLocation } from "react-router-dom";
 const ActiveLink = ({ item }) => {
   const { path, name, icon } = item ?? {};
   const location = useLocation();
-  const isActive = location.pathname === path;
+  const isActive = location.pathname.startsWith(path);
   return (
     <NavLink to={path}>
       <div

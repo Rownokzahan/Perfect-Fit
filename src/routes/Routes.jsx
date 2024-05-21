@@ -93,13 +93,14 @@ const routes = createBrowserRouter([
         element: <Products />,
       },
       {
+        path: "products/:product_id/edit",
+        element: <EditProduct />,
+      },
+      {
         path: "add-product",
         element: <AddProduct />,
       },
-      {
-        path: "edit-product",
-        element: <EditProduct />,
-      },
+
       {
         path: "orders",
         element: <Orders />,

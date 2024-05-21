@@ -1,7 +1,8 @@
 import { MdDelete, MdEdit } from "react-icons/md";
+import { Link } from "react-router-dom";
 
 const ProductCard = ({ product }) => {
-  const { image, name, price } = product ?? {};
+  const { _id, image, name, price } = product ?? {};
   return (
     <div className="border rounded group hover:shadow-lg duration-300">
       <div
@@ -11,10 +12,13 @@ const ProductCard = ({ product }) => {
         }}
       >
         <div className="absolute -bottom-10 w-full px-4 flex justify-between items-center opacity-0 group-hover:opacity-100 group-hover:bottom-4 transition-all duration-300">
-          <button className="w-24 py-1 px-2 rounded bg-primary-black text-primary-white font-semibold flex items-center justify-center gap-2">
+          <Link
+            to={`/admin/products/${_id}/edit`}
+            className="w-24 py-1 px-2 rounded bg-primary-black text-primary-white font-semibold flex items-center justify-center gap-2"
+          >
             <MdEdit />
             Edit
-          </button>
+          </Link>
           <button className="w-24 py-1 px-2 rounded bg-red-600 text-primary-white font-semibold flex items-center justify-center gap-2">
             <MdDelete />
             Delete
