@@ -30,9 +30,9 @@ const Dropdown = ({ items, defaultLabel, paramKey }) => {
   };
 
   return (
-    <div className="relative">
+    <div className="relative w-full">
       <button
-        className="relative w-48 px-4 py-2 rounded bg-primary-white text-sm text-left font-medium text-secondary-black"
+        className="relative w-full sm:w-48 px-4 py-2 border rounded bg-white text-left font-medium text-secondary-black"
         onClick={() => setIsDropdownOpen(!isDropdownOpen)}
       >
         {selectedItem} {/* Display the selected item name */}
@@ -45,16 +45,16 @@ const Dropdown = ({ items, defaultLabel, paramKey }) => {
           isDropdownOpen ? "h-80" : "h-0"
         } overflow-hidden transition-height ease-out duration-200`}
       >
-        <div className="rounded shadow flex flex-col divide-y text-sm font-medium text-secondary-black bg-primary-white">
+        <div className="rounded shadow flex flex-col divide-y font-medium text-secondary-black bg-white">
           {items.map((item, index) => (
             <button
               key={item._id}
-              className={`px-4 py-2 text-left ${
+              className={`px-4 py-2 text-left border-x ${
                 selectedItem === item.name
-                  ? "bg-primary-black text-primary-white"
-                  : "hover:bg-white"
-              } ${index === 0 ? "rounded-t" : ""} ${
-                index === items.length - 1 ? "rounded-b" : ""
+                  ? "bg-primary-black text-primary-white border-black"
+                  : "hover:bg-primary-white"
+              } ${index === 0 ? "border-t rounded-t" : ""} ${
+                index === items.length - 1 ? "border-b rounded-b" : ""
               }`}
               onClick={() => handleItemClick(item)}
             >
