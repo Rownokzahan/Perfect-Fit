@@ -1,38 +1,16 @@
 import { useState } from "react";
-import { useLocation } from "react-router-dom";
 import useTitle from "../../../hooks/useTitle";
-import { useGetDressesQuery } from "../../../redux/features/api/dressApi";
+import useDresses from "../../../hooks/useDresses";
 import Spinner from "../../../components/ui/Spinner";
 import NoProduct from "./components/NoProduct";
 import Header from "./components/Header";
-import Filters from "./components/Filters";
+import Filters from "../../../components/shared/Filters";
 import ProductList from "./components/ProductList";
 import Pagination from "../../../components/ui/Pagination";
 
 const Products = () => {
   useTitle("Products");
-
-  const { data, isLoading, error } = useGetDressesQuery();
-  let dresses = data;
-
-  const location = useLocation();
-  const params = new URLSearchParams(location.search);
-  const category = params.get("category");
-  const sortBy = params.get("sort");
-
-  if (category && category !== "all-dress") {
-    const filteredDresses = dresses?.filter(
-      (dress) => dress.category === category
-    );
-    dresses = filteredDresses;
-  }
-
-  if (sortBy && category !== "newest") {
-    const filteredDresses = dresses?.filter(
-      (dress) => dress.category === category
-    );
-    dresses = filteredDresses;
-  }
+  const { dresses, isLoading, error } = useDresses();
 
   // State variables for pagination
   const [currentPage, setCurrentPage] = useState(0);
@@ -54,7 +32,7 @@ const Products = () => {
         {error || !currentDresses || currentDresses?.length === 0 ? (
           <NoProduct />
         ) : (
-          <>
+          <div className="p-8">
             <Filters />
             <ProductList products={currentDresses} />
 
@@ -64,7 +42,7 @@ const Products = () => {
               totalItems={dresses?.length}
               itemsPerPage={itemsPerPage}
             />
-          </>
+          </div>
         )}
       </div>
     </>
