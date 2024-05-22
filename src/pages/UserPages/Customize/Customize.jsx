@@ -1,19 +1,23 @@
 import { useParams } from "react-router-dom";
 import Container from "../../../components/ui/Container";
-import dress1 from "../../../assets/images/dresses/dress1.jpeg";
 import CustomizeOptionsForm from "../../../components/forms/CustomizeOptionsForm";
 import { FaRegHeart } from "react-icons/fa";
-
-const dress = {
-  _id: "01",
-  image: dress1,
-  name: "Sunflower Summer Dress",
-  price: 54,
-};
+import { useGetDressByIdQuery } from "../../../redux/features/api/dressApi";
+import Spinner from "../../../components/ui/Spinner";
 
 const Customize = () => {
   const { dress_id } = useParams();
+
+  const { data: dress, isLoading, error } = useGetDressByIdQuery(dress_id);
   const { image, name, price } = dress ?? {};
+
+  if (isLoading) {
+    return <Spinner/>
+  }
+
+  if (!dress || error) {
+    return <div>No Dress Found</div>
+  }
 
   return (
     <Container marginTop={0}>
@@ -34,7 +38,7 @@ const Customize = () => {
           <h3 className="text-xl text-center font-medium text-secondary-black">
             Customize Dress Styles
           </h3>
-          <CustomizeOptionsForm  dress_id={dress_id} />
+          <CustomizeOptionsForm dress_id={dress_id} />
         </div>
       </div>
     </Container>

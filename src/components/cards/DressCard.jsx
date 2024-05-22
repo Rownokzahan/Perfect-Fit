@@ -6,17 +6,17 @@ const DressCard = ({ dress }) => {
   const { _id, name, price, image } = dress ?? {};
 
   return (
-    <div className="bg-white rounded relative group hover:shadow hover:-mt-1 duration-300">
+    <div className="bg-white rounded relative group">
       <Link to={`/dresses/${_id}/customize`}>
         <div className="relative overflow-hidden h-52 md:h-72 rounded-t cursor-pointer">
           <img
             src={image}
             alt={name}
-            className="w-full h-52 md:h-96 rounded-t object-cover scale-100 group-hover:scale-105 duration-300"
+            className="w-full h-52 md:h-96 rounded-t object-cover scale-100 group-hover:scale-110 duration-300"
           />
-          {/* Buy Now Button */}
+          {/* Customize Button */}
           <button className="button-white absolute -bottom-2 group-hover:bottom-4 right-1/2 translate-x-1/2 opacity-0 group-hover:opacity-100 transition-all duration-300">
-            Buy Now
+            Customize
           </button>
         </div>
       </Link>

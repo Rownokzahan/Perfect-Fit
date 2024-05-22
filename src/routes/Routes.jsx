@@ -17,10 +17,12 @@ import Orders from "../pages/AdminPages/Orders/Orders";
 import Customers from "../pages/AdminPages/Customers/Customers";
 import EditProduct from "../pages/AdminPages/EditProduct/EditProduct";
 import PrivateRoute from "./PrivateRoute";
+import Error404 from "../pages/ErrorPages/Error404";
 
 const routes = createBrowserRouter([
   {
     path: "/",
+    errorElement: <Error404 />,
     element: <UserLayout />,
     children: [
       {

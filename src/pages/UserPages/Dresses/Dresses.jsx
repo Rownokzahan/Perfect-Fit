@@ -4,7 +4,7 @@ import useDresses from "../../../hooks/useDresses";
 import Spinner from "../../../components/ui/Spinner";
 import Container from "../../../components/ui/Container";
 import Filters from "../../../components/shared/Filters";
-import NoDress from "./components/NoDress";
+import NoDress from "../../ErrorPages/NoDress";
 import DressList from "./components/DressList";
 import Pagination from "../../../components/ui/Pagination";
 
