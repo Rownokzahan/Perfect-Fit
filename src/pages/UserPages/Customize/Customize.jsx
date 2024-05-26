@@ -1,9 +1,9 @@
 import { useParams } from "react-router-dom";
 import Container from "../../../components/ui/Container";
-import CustomizeOptionsForm from "../../../components/forms/CustomizeOptionsForm";
-import { FaRegHeart } from "react-icons/fa";
 import { useGetDressByIdQuery } from "../../../redux/features/api/dressApi";
 import Spinner from "../../../components/ui/Spinner";
+import CustomizeForm from "../../../components/forms/CustomizeForm";
+import NoDress from "../../ErrorPages/NoDress";
 
 const Customize = () => {
   const { dress_id } = useParams();
@@ -12,33 +12,28 @@ const Customize = () => {
   const { image, name, price } = dress ?? {};
 
   if (isLoading) {
-    return <Spinner/>
+    return <Spinner />;
   }
 
   if (!dress || error) {
-    return <div>No Dress Found</div>
+    return <NoDress />;
   }
 
   return (
-    <Container marginTop={0}>
-      <div className="mt-12 grid xl:grid-cols-2 gap-16">
-        <div className="md:h-3/4 xl:w-full mx-auto">
-          <div className="flex justify-between items-center">
-            <h3 className="text-2xl font-medium">{name}</h3>
-            <div className="relative">
-              <FaRegHeart className="text-2xl leading-none mt-2" />
-              <p className="text-xs absolute left-1">28</p>
-            </div>
+    <Container marginTop={12}>
+      <div className="flex flex-col lg:flex-row gap-16">
+        <div className="sm:w-[40%] space-y-4 lg:self-start lg:sticky lg:top-12 lg:left-0">
+          <div className="flex justify-between">
+            <h5 className="text-xl font-medium truncate">{name}</h5>
+            <h5 className="font-semibold">${price}</h5>
           </div>
-          <h5 className="text-2xl font-semibold mt-2 mb-4">${price}</h5>
-          <img src={image} alt="" className="w-full" />
+          <img src={image} className="h-[80vh] w-full object-cover rounded" />
         </div>
-
-        <div className="space-y-8 border p-2 sm:p-8">
-          <h3 className="text-xl text-center font-medium text-secondary-black">
-            Customize Dress Styles
-          </h3>
-          <CustomizeOptionsForm dress_id={dress_id} />
+        <div className="space-y-4">
+          <p className="pb-2 border-b text-xl font-medium">
+            Change Dress Style
+          </p>
+          <CustomizeForm image={image} name={name} price={price} />
         </div>
       </div>
     </Container>
