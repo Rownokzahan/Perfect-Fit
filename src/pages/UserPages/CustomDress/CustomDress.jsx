@@ -1,5 +1,5 @@
 import Container from "../../../components/ui/Container";
-import CustomDressForm from "../../../components/forms/CustomDressForm/CustomDressForm";
+import CustomDressForm from "../../../components/forms/CustomDressForm";
 
 const CustomDress = () => {
   return (
