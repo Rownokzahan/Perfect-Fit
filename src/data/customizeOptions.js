@@ -13,8 +13,9 @@ import pleated from "../assets/images/customize-options/pleated.png";
 
 const customizeOptions = [
   {
-    name: "Bodice",
-    types: [
+    _id: "01",
+    title: "Bodice",
+    options: [
       {
         image: boat,
         name: "Boat",
@@ -34,8 +35,9 @@ const customizeOptions = [
     ],
   },
   {
-    name: "Sleeve",
-    types: [
+    _id: "02",
+    title: "Sleeve",
+    options: [
       {
         image: flutter,
         name: "Flutter",
@@ -55,8 +57,9 @@ const customizeOptions = [
     ],
   },
   {
-    name: "Skirt Style",
-    types: [
+    _id: "03",
+    title: "Skirt Style",
+    options: [
       {
         image: circle,
         name: "Circle",
@@ -76,6 +79,5 @@ const customizeOptions = [
     ],
   },
 ];
-
 
 export default customizeOptions;
