@@ -31,7 +31,7 @@ const CartTableRow = ({ item }) => {
           ) : (
             <img
               src={image}
-              className="w-full max-h-[220px] object-cover"
+              className="max-h-[220px] object-cover rounded ms-8"
               alt=""
             />
           )}

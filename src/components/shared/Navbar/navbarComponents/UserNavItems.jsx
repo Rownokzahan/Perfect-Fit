@@ -1,3 +1,4 @@
+import useCart from "../../../../hooks/useCart";
 import ActiveLink from "./ActiveLink";
 import {
   HiOutlineHeart,
@@ -6,6 +7,8 @@ import {
 } from "react-icons/hi";
 
 const UserNavItems = () => {
+  const { cartItems, isLoading } = useCart();
+
   return (
     <>
       <ActiveLink to={"/admin/dashboard"}>
@@ -25,7 +28,7 @@ const UserNavItems = () => {
         <div className="relative">
           <HiOutlineShoppingBag />
           <span className="absolute -top-2 -right-2 text-xs bg-primary px-1 rounded-full font-medium">
-            0
+            {cartItems?.length && !isLoading ? cartItems?.length : 0}
           </span>
         </div>
       </ActiveLink>
