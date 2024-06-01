@@ -10,7 +10,6 @@ const MainLayout = () => {
 
   useEffect(() => {
     dispatch(getCurrentUser());
-    console.log("I am here");
   }, [dispatch]);
 
   return (

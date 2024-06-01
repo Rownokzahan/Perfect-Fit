@@ -46,4 +46,8 @@
   .button-round-black {
     @apply button-black-solid p-2 rounded-full;
   }
+
+  .button-round-primary {
+    @apply button bg-primary-white text-primary p-2 rounded-full;
+  }
 }

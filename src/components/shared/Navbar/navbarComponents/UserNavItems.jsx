@@ -1,3 +1,4 @@
+import { useSelector } from "react-redux";
 import useCart from "../../../../hooks/useCart";
 import ActiveLink from "./ActiveLink";
 import {
@@ -7,6 +8,7 @@ import {
 } from "react-icons/hi";
 
 const UserNavItems = () => {
+  const wishlist = useSelector((state) => state.wishlist);
   const { cartItems, isLoading } = useCart();
 
   return (
@@ -20,7 +22,7 @@ const UserNavItems = () => {
         <div className="relative">
           <HiOutlineHeart />
           <span className="absolute -top-2 -right-2 text-xs bg-primary px-1 rounded-full font-medium">
-            0
+            {wishlist?.length ? wishlist?.length : 0}
           </span>
         </div>
       </ActiveLink>

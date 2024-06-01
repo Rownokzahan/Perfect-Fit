@@ -1,16 +1,34 @@
-import DressCard from "../../../components/cards/DressCard";
+import useTitle from "../../../hooks/useTitle";
+import useWishlist from "../../../hooks/useWishlist";
+import Spinner from "../../../components/ui/Spinner";
+import EmptyWishlist from "../../ErrorPages/EmptyWishlist";
 import Container from "../../../components/ui/Container";
-import Title from "../../../components/ui/Title";
-import dresses from "../../../data/dresses";
-
+import DressCard from "../../../components/cards/DressCard";
 
 const Wishlist = () => {
+  useTitle("Wishlist");
+  const { wishlist, isLoading } = useWishlist();
+
+  if (isLoading) {
+    return <Spinner />;
+  }
+
+  if (wishlist?.length === 0) {
+    return <EmptyWishlist />;
+  }
+
   return (
     <Container marginTop={12}>
-      <Title position={"left"}>Your Wishlist</Title>
-      <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 md:gap-12">
-        {dresses?.slice(0, 8).map((dress) => (
-          <DressCard key={dress._id} dress={dress} status="New" />
+      <h3 className="font-medium mb-8">
+        Your Wishlist
+        <span className="font-normal text-sm text-secondary-black ps-2">
+          {wishlist?.length} items
+        </span>
+      </h3>
+
+      <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-4 md:gap-8">
+        {wishlist?.map((dress) => (
+          <DressCard key={dress?._id} dress={dress} />
         ))}
       </div>
     </Container>

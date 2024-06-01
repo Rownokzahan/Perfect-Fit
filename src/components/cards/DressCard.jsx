@@ -1,9 +1,16 @@
-import { FaRegHeart } from "react-icons/fa";
+import { FaHeart, FaRegHeart } from "react-icons/fa";
 import { BiSolidRightArrow } from "react-icons/bi";
 import { Link } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import {
+  addToWishlist,
+  removeFromWishlist,
+} from "../../redux/features/wishlist/wishlistSlice";
 
 const DressCard = ({ dress }) => {
   const { _id, name, price, image } = dress ?? {};
+  const wishlist = useSelector((state) => state.wishlist);
+  const dispatch = useDispatch();
 
   return (
     <div className="bg-white rounded relative group">
@@ -29,14 +36,30 @@ const DressCard = ({ dress }) => {
       <div className="absolute top-4 -right-4 group-hover:right-4 opacity-0 group-hover:opacity-100 duration-300">
         <div className="group/wishlist relative">
           {/* Wislist Button*/}
-          <button className="button-round-white">
-            <FaRegHeart />
-          </button>
+          {wishlist.includes(_id) ? (
+            <button
+              className="button-round-primary"
+              onClick={() => dispatch(removeFromWishlist(_id))}
+            >
+              <FaHeart />
+            </button>
+          ) : (
+            <button
+              className="button-round-primary"
+              onClick={() => dispatch(addToWishlist(_id))}
+            >
+              <FaRegHeart />
+            </button>
+          )}
 
           {/* Add to Wishlist tooltip */}
           <div className="absolute right-12 top-1/2 -translate-y-1/2 whitespace-nowrap scale-0 group-hover/wishlist:scale-100 opacity-0 group-hover/wishlist:opacity-100 transition-opacity duration-300">
             <div className="relative px-2 py-1 rounded bg-primary-white bg-opacity-70 text-sm font-medium">
-              <span>Add to Wishlist</span>
+              <span>
+                {wishlist.includes(_id)
+                  ? "Remove from Wishlist"
+                  : "Add to Wishlist"}
+              </span>
               <BiSolidRightArrow className="absolute -right-[11px] top-1/2 -translate-y-1/2 text-primary-white text-opacity-70" />
             </div>
           </div>
