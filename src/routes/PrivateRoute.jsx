@@ -12,7 +12,7 @@ const PrivateRoute = ({ children }) => {
   }
 
   if (!isUserloading && !user) {
-    return <Navigate state={{ requestedPath }} to={"/login"} replace={true} />;
+    return <Navigate state={{ requestedPath }} to={"/auth/login"} replace={true} />;
   }
 
   return children;

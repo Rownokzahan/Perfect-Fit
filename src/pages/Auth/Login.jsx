@@ -20,7 +20,7 @@ const Login = () => {
         <button
           className="text-primary"
           onClick={() => {
-            navigate("/signup", { state: { requestedPath } });
+            navigate("/auth/signup", { state: { requestedPath } });
           }}
         >
           Create New
