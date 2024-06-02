@@ -17,10 +17,10 @@ const Modal = ({ children, isOpen, setIsOpen, dismissible = true }) => {
       <Transition appear show={isOpen}>
         <Dialog
           as="div"
-          className="relative z-10 focus:outline-none"
+          className="relative z-50 focus:outline-none"
           onClose={handleOnClose}
         >
-          <div className="fixed inset-0 z-10 w-screen overflow-y-auto bg-primary-black/10">
+          <div className="fixed inset-0 z-10 w-screen overflow-y-auto bg-primary-black/60">
             <div className="flex min-h-full items-center justify-center p-4">
               <TransitionChild
                 enter="ease-out duration-300"
