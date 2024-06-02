@@ -2,7 +2,7 @@ import { RiDeleteBinLine } from "react-icons/ri";
 import DressAssembler from "../../shared/DressAssembler";
 import { BiSolidUpArrow } from "react-icons/bi";
 
-const CartTableRow = ({ item }) => {
+const CartTableRow = ({ item, handleRemoveFromCartModal }) => {
   const {
     image,
     name,
@@ -21,7 +21,7 @@ const CartTableRow = ({ item }) => {
       <td className="px-6 py-8">
         <div className="grid grid-cols-2 gap-8">
           {image === "Custom Dress" ? (
-            <div className="max-w-52 -mt-8">
+            <div className="max-w-52">
               <DressAssembler
                 bodice={Bodice}
                 sleeve={Sleeve}
@@ -31,7 +31,7 @@ const CartTableRow = ({ item }) => {
           ) : (
             <img
               src={image}
-              className="max-h-[220px] object-cover rounded ms-8"
+              className="h-full me-8 object-cover rounded"
               alt=""
             />
           )}
@@ -77,10 +77,13 @@ const CartTableRow = ({ item }) => {
         <h4 className="font-medium">${price}</h4>
       </td>
       <td className="px-6 py-8">
-        <p className="py-2 px-6 border w-max">1</p>
+        <p className="py-1 px-3 border w-max">1</p>
       </td>
       <td className="px-6 py-8">
-        <button className="text-xl text-red-600">
+        <button
+          className="text-xl text-red-600"
+          onClick={() => handleRemoveFromCartModal(item)}
+        >
           <RiDeleteBinLine />
         </button>
       </td>

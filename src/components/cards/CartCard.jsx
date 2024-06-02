@@ -1,13 +1,13 @@
 import { RiDeleteBinLine } from "react-icons/ri";
 import DressAssembler from "../shared/DressAssembler";
 
-const CartCard = ({ item }) => {
+const CartCard = ({ item, handleRemoveFromCartModal }) => {
   const {
     image,
     name,
     Bodice,
     Sleeve,
-    "Skirt Style": SkirtStyle, 
+    "Skirt Style": SkirtStyle,
     Chest,
     Waist,
     Long,
@@ -15,15 +15,11 @@ const CartCard = ({ item }) => {
   } = item || {};
 
   return (
-    <div className="grid grid-cols-3 gap-4 py-8 relative">
+    <div className="grid grid-cols-3 gap-4 py-8 relative items-center">
       {image === "Custom Dress" ? (
-        <DressAssembler
-          bodice={Bodice}
-          sleeve={Sleeve}
-          skirt={SkirtStyle}
-        />
+        <DressAssembler bodice={Bodice} sleeve={Sleeve} skirt={SkirtStyle} />
       ) : (
-        <img src={image} className="w-full max-h-[230px] object-cover" alt="" />
+        <img src={image} className="w-full h-full rounded object-cover" alt="" />
       )}
 
       <div className="space-y-2 col-span-2">
@@ -48,7 +44,10 @@ const CartCard = ({ item }) => {
           <span className="text-xs text-secondary-black mb-px">QTY - 1</span>
         </div>
 
-        <button className="text-xl text-red-600 absolute bottom-6 right-4">
+        <button
+          className="text-xl text-red-600 absolute bottom-6 right-4"
+          onClick={() => handleRemoveFromCartModal(item)}
+        >
           <RiDeleteBinLine />
         </button>
       </div>

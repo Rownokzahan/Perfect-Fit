@@ -7,7 +7,7 @@ const useWishlist = () => {
 
   const wishlist = [];
 
-  if (!isLoading || !error) {
+  if (wishlistIdList?.length === 0 && !isLoading && !error) {
     wishlistIdList?.forEach((id) => {
       const dress = dresses?.find((dress) => dress?._id === id);
       if (dress) {

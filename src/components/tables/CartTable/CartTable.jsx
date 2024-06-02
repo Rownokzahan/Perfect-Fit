@@ -1,6 +1,6 @@
 import CartTableRow from "./CartTableRow";
 
-const CartTable = ({ cartItems }) => {
+const CartTable = ({ cartItems,handleRemoveFromCartModal }) => {
   return (
     <table className="w-full">
       <thead>
@@ -19,7 +19,11 @@ const CartTable = ({ cartItems }) => {
       </thead>
       <tbody className="divide-y">
         {cartItems?.map((item) => (
-          <CartTableRow key={item._id} item={item} />
+          <CartTableRow
+            key={item._id}
+            item={item}
+            handleRemoveFromCartModal={handleRemoveFromCartModal}
+          />
         ))}
       </tbody>
     </table>
