@@ -5,7 +5,7 @@ const baseUrl = import.meta.env.VITE_API_BASE_URL;
 export const cartApi = createApi({
   reducerPath: "cartApi",
   baseQuery: fetchBaseQuery({ baseUrl }),
-  tagTypes: ["Carts"],
+  tagTypes: ["Cart"],
   endpoints: (build) => ({
     // Query to fetch all items from the cart by user ID
     getCartItemsByUserId: build.query({
@@ -13,6 +13,7 @@ export const cartApi = createApi({
         url: `/carts/${userId}`,
         method: "GET",
       }),
+      providesTags: ["Cart"],
     }),
 
     // Mutation to add an item to the cart
@@ -22,7 +23,7 @@ export const cartApi = createApi({
         method: "POST",
         body: item,
       }),
-      invalidatesTags: ["Carts"],
+      invalidatesTags: ["Cart"],
     }),
 
     // Mutation to remove an item from the cart
@@ -31,16 +32,7 @@ export const cartApi = createApi({
         url: `/carts/${userId}/items/${itemId}`,
         method: "DELETE",
       }),
-      invalidatesTags: ["Carts"],
-    }),
-
-    // Mutation to clear the entire cart
-    clearCart: build.mutation({
-      query: (userId) => ({
-        url: `/carts/${userId}/clear`,
-        method: "DELETE",
-      }),
-      invalidatesTags: ["Carts"],
+      invalidatesTags: ["Cart"],
     }),
   }),
 });
@@ -49,5 +41,4 @@ export const {
   useGetCartItemsByUserIdQuery,
   useAddToCartMutation,
   useRemoveFromCartMutation,
-  useClearCartMutation,
 } = cartApi;
