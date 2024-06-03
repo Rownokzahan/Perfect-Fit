@@ -34,6 +34,15 @@ export const cartApi = createApi({
       }),
       invalidatesTags: ["Cart"],
     }),
+
+    // Mutation to clear the entire cart
+    clearCart: build.mutation({
+      query: (userId) => ({
+        url: `/carts/${userId}/clear`,
+        method: "DELETE",
+      }),
+      invalidatesTags: ["Cart"],
+    }),
   }),
 });
 
@@ -41,4 +50,5 @@ export const {
   useGetCartItemsByUserIdQuery,
   useAddToCartMutation,
   useRemoveFromCartMutation,
+  useClearCartMutation,
 } = cartApi;
