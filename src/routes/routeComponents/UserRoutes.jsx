@@ -1,4 +1,5 @@
 import Cart from "../../pages/UserPages/Cart/Cart";
+import Checkout from "../../pages/UserPages/Checkout/Checkout";
 import CustomDress from "../../pages/UserPages/CustomDress/CustomDress";
 import Customize from "../../pages/UserPages/Customize/Customize";
 import Dresses from "../../pages/UserPages/Dresses/Dresses";
@@ -16,6 +17,11 @@ const UserRoutes = [
     // Route for viewing all dresses
     path: "/dresses",
     element: <Dresses />,
+  },
+  {
+    // Route for viewing the wishlist
+    path: "/wishlist",
+    element: <Wishlist />,
   },
   {
     // Route for creating a custom dress, protected by PrivateRoute
@@ -45,11 +51,11 @@ const UserRoutes = [
     ),
   },
   {
-    // Route for viewing the wishlist, protected by PrivateRoute
-    path: "/wishlist",
+    // Route for checkout, protected by PrivateRoute
+    path: "/cart/checkout",
     element: (
       <PrivateRoute>
-        <Wishlist />
+        <Checkout />
       </PrivateRoute>
     ),
   },

@@ -15,7 +15,12 @@ const Checkout = ({ totalPrice }) => {
         <span className="">${totalPrice + 15}</span>
       </div>
 
-      <button className="button-black-solid w-full">Proceed to Checkout</button>
+      <a
+        href={"/cart/checkout"}
+        className="button-black-solid w-full block text-center"
+      >
+        Proceed to Checkout
+      </a>
     </div>
   );
 };
