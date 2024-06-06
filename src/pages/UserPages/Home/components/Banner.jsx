@@ -1,26 +1,21 @@
 import bg_image from "../../../../assets/images/home/banner/banner2.jpg";
-import Container from "../../../../components/ui/Container";
 
 const Banner = () => {
   return (
-    <div className="relative min-h-screen">
-      <div className="inset-0 absolute -top-16 bg-primary-black bg-opacity-70">
+    <div className="relative min-h-[calc(100vh-58px)]">
+      <div className="inset-0 absolute -top-16 bg-gradient-to-br from-black/80">
         <img
           src={bg_image}
-          className="h-full w-full object-cover object-center mix-blend-overlay"
+          className="h-full w-full object-cover object-center mix-blend-multiply"
           alt=""
         />
       </div>
 
-      <div className="absolute bottom-1/4 text-primary-white">
-        <Container>
-          <h1 className="text-5xl font-bold mb-5 max-w-screen-md">
-            Craft Your Signature Look
-          </h1>
-          <p className="text-xl text-primary-white mb-8">
-            Let&apos;s craft a wardrobe that resonates with your essence
-          </p>
-        </Container>
+      <div className="absolute top-1/2 left-[5%] lg:left-[7%] text-primary-white font-bold">
+        <h1 className="text-2xl md:text-4xl mb-5">
+          We make dresses that fit you
+        </h1>
+        <h1 className="text-4xl md:text-7xl uppercase">BEAUTIFULLY</h1>
       </div>
     </div>
   );
