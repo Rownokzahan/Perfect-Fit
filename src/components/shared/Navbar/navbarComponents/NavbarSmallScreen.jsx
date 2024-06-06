@@ -10,7 +10,7 @@ const NavbarSmallScreen = ({ scrolled, isHomePage }) => {
   return (
     <nav className="pt-16 lg:hidden">
       <div
-        className={`flex justify-between items-center w-full px-4 py-4 border-b ${
+        className={`flex justify-between items-center w-full p-4 border-b ${
           scrolled
             ? "fixed bg-primary-white text-primary-black"
             : isHomePage

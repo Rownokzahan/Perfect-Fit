@@ -59,6 +59,15 @@ const UserRoutes = [
       </PrivateRoute>
     ),
   },
+  {
+    // Route for checkout, protected by PrivateRoute
+    path: "/my-orders",
+    element: (
+      <PrivateRoute>
+        <Checkout />
+      </PrivateRoute>
+    ),
+  },
 ];
 
 export default UserRoutes;

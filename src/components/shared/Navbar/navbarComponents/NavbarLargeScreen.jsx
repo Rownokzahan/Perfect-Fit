@@ -5,7 +5,7 @@ import UserNavItems from "./UserNavItems";
 const NavbarLargeScreen = ({ scrolled, isHomePage }) => {
   return (
     <div
-      className={`flex justify-between px-[5%] py-4 w-full ${
+      className={`flex justify-between px-[5%] pt-4 pb-2 w-full ${
         scrolled
           ? "fixed top-0 bg-primary-white text-primary-black border-b"
           : isHomePage
