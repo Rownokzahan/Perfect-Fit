@@ -1,53 +1,39 @@
 import { useForm } from "react-hook-form";
-import { useDispatch, useSelector } from "react-redux";
-import { loginWithEmail } from "../../redux/features/auth/authSlice";
 import { AiOutlineExclamationCircle } from "react-icons/ai";
 import { ImSpinner9 } from "react-icons/im";
 import { useNavigate } from "react-router-dom";
-import { useState } from "react";
+import useManageAuth from "../../hooks/useManageAuth";
 
 const LoginForm = ({ requestedPath }) => {
   const {
     register,
     handleSubmit,
-    reset,
     formState: { errors },
   } = useForm();
   const navigate = useNavigate();
-  const [loading, setLoading] = useState(false);
-  const { error: loginError } = useSelector((state) => state.auth);
-  const dispatch = useDispatch();
+  const { emailLogin, loading, error } = useManageAuth();
 
   // Form submission handler
   const onSubmit = async (data) => {
-    setLoading(true);
-
     const email = data?.email;
     const password = data?.password;
 
-    // Login user
-    dispatch(loginWithEmail({ email, password }))
-      .unwrap()
-      .then(() => {
-        reset();
-        setLoading(false);
-        navigate(requestedPath);
-      })
-      .catch(() => {
-        setLoading(false);
-        return;
-      });
+    // Callback function for success
+    const onSuccess = () => {
+      navigate(requestedPath); // Redirect to the requested page
+    };
+
+    // Function to login
+    emailLogin(email, password, onSuccess);
   };
 
   return (
     <>
       {/* Display login error message */}
-      {loginError ? (
+      {error && (
         <p className="text-red-600 font-medium text-center text-sm relative -top-10">
-          {loginError}
+          {error}
         </p>
-      ) : (
-        <></>
       )}
 
       {/* Login form */}

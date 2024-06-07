@@ -1,71 +1,40 @@
-import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { useDispatch, useSelector } from "react-redux";
 import { useForm } from "react-hook-form";
-import { signupWithEmail } from "../../redux/features/auth/authSlice";
-import { useCreateUserMutation } from "../../redux/features/api/userApi";
 import { AiOutlineExclamationCircle } from "react-icons/ai";
 import { ImSpinner9 } from "react-icons/im";
+import useManageAuth from "../../hooks/useManageAuth";
 
 const SignupForm = ({ requestedPath }) => {
   const {
     register,
     handleSubmit,
     formState: { errors },
-    reset,
   } = useForm();
+  const { createUserWithEmail, loading, error } = useManageAuth();
   const navigate = useNavigate();
-
-  const { error: signupError } = useSelector((state) => state.auth);
-  const [saveUserToDatabase] = useCreateUserMutation();
-  const [databaseError, setDatabaseError] = useState(null);
-  const [loading, setLoading] = useState(false);
-  const dispatch = useDispatch();
 
   // Form submission handler
   const onSubmit = async (data) => {
-    setLoading(true);
-    setDatabaseError(null);
-
     const name = data?.name;
     const email = data?.email;
     const password = data?.password;
 
-    // Signup user
-    dispatch(signupWithEmail({ name, email, password }))
-      .unwrap()
-      .then((user) => {
-        // Save user to database
-        saveUserToDatabase(user)
-          .unwrap()
-          .then(() => {
-            setLoading(false);
-            navigate(requestedPath); // Redirect to the requested page
-          })
-          .catch((error) => {
-            console.error("rejected", error);
-            const errorMessage = "Something went wrong. Please try again.";
-            setDatabaseError(errorMessage);
-            setLoading(false);
-          });
+    // Callback function for success
+    const onSuccess = () => {
+      navigate(requestedPath); // Redirect to the requested page
+    };
 
-        reset();
-      })
-      .catch(() => {
-        setLoading(false);
-        return;
-      });
+    // Function to create a user
+    createUserWithEmail(name, email, password, onSuccess);
   };
 
   return (
     <>
-      {/* Display signup or database error messages */}
-      {signupError || databaseError ? (
+      {/* Display error messages */}
+      {error && (
         <p className="text-red-600 font-medium text-center text-sm relative -top-10">
-          {signupError ? signupError : databaseError}
+          {error}
         </p>
-      ) : (
-        <></>
       )}
 
       {/* Signup form */}
