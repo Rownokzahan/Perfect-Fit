@@ -11,7 +11,8 @@ const CartTableRow = ({ item, handleRemoveFromCartModal }) => {
     "Skirt Style": SkirtStyle,
     Chest,
     Waist,
-    Long,
+    Height,
+    "Arm Length": ArmLength,
     Request,
     price,
   } = item || {};
@@ -44,10 +45,11 @@ const CartTableRow = ({ item, handleRemoveFromCartModal }) => {
               <p>Skirt Style: {SkirtStyle}</p>
             </div>
             <div className="text-sm">
-              <h6 className="font-medium">Size</h6>
+              <h6 className="font-medium">Measurements</h6>
               <p>Chest: {Chest}</p>
               <p>Waist: {Waist}</p>
-              <p>Long: {Long}</p>
+              <p>Height: {Height}</p>
+              <p>Arm Length : {ArmLength}</p>
             </div>
 
             {Request && (

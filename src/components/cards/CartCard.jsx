@@ -10,7 +10,8 @@ const CartCard = ({ item, handleRemoveFromCartModal }) => {
     "Skirt Style": SkirtStyle,
     Chest,
     Waist,
-    Long,
+    Height,
+    "Arm Length": ArmLength,
     price,
   } = item || {};
 
@@ -19,7 +20,11 @@ const CartCard = ({ item, handleRemoveFromCartModal }) => {
       {image === "Custom Dress" ? (
         <DressAssembler bodice={Bodice} sleeve={Sleeve} skirt={SkirtStyle} />
       ) : (
-        <img src={image} className="w-full h-full rounded object-cover" alt="" />
+        <img
+          src={image}
+          className="w-full h-full rounded object-cover"
+          alt=""
+        />
       )}
 
       <div className="space-y-2 col-span-2">
@@ -32,10 +37,11 @@ const CartCard = ({ item, handleRemoveFromCartModal }) => {
           <p>Skirt Style: {SkirtStyle}</p>
         </div>
         <div className="text-sm">
-          <h6 className="font-medium">Size</h6>
+          <h6 className="font-medium">Measurements</h6>
           <p>Chest: {Chest}</p>
           <p>Waist: {Waist}</p>
-          <p>Long: {Long}</p>
+          <p>Height: {Height}</p>
+          <p>Arm Length : {ArmLength}</p>
         </div>
 
         <div className="flex items-center font-medium gap-2">
