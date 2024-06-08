@@ -13,8 +13,8 @@ const PlaceOrderModal = ({ isOpen, setIsOpen }) => {
         <a href="/dresses" className="button-black-outline w-full">
           Continue Shopping
         </a>
-        <a href="/" className="button-black-solid text-center w-full">
-          Back to Home
+        <a href="/my-orders" className="button-black-solid text-center w-full">
+          View Orders
         </a>
       </div>
     </Modal>

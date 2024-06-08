@@ -19,12 +19,15 @@ const CheckoutForm = ({ setIsModalOpen }) => {
     useCreateOrderMutation();
   const [clearCart, { isLoading: isClearingCart }] = useClearCartMutation();
   const { user } = useUser();
-  const { cartItems } = useCart();
+  const { cartItems, totalPrice } = useCart();
 
   const onSubmit = (data) => {
     const order = {
-      ...data,
-      items: [...cartItems],
+      recipient_info: { ...data },
+      totalPrice,
+      items: cartItems.map(({ created_at, ...rest }) => ({
+        ...rest,
+      })),
     };
 
     createOrder({ userId: user?._id, order })

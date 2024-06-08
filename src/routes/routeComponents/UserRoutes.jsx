@@ -4,6 +4,7 @@ import CustomDress from "../../pages/UserPages/CustomDress/CustomDress";
 import Customize from "../../pages/UserPages/Customize/Customize";
 import Dresses from "../../pages/UserPages/Dresses/Dresses";
 import Home from "../../pages/UserPages/Home/Home";
+import MyOrders from "../../pages/UserPages/MyOrders/MyOrders";
 import Wishlist from "../../pages/UserPages/Wishlist/Wishlist";
 import PrivateRoute from "../PrivateRoute";
 
@@ -60,11 +61,11 @@ const UserRoutes = [
     ),
   },
   {
-    // Route for checkout, protected by PrivateRoute
+    // Route for my orders, protected by PrivateRoute
     path: "/my-orders",
     element: (
       <PrivateRoute>
-        <Checkout />
+        <MyOrders />
       </PrivateRoute>
     ),
   },
