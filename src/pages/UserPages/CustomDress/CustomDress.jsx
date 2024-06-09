@@ -1,7 +1,10 @@
 import Container from "../../../components/ui/Container";
 import CustomDressForm from "../../../components/forms/CustomDressForm";
+import useTitle from "../../../hooks/useTitle";
 
 const CustomDress = () => {
+  useTitle("Custom Dress")
+
   return (
     <Container marginTop={12}>
       <h4 className="font-semibold text-3xl text-center">
