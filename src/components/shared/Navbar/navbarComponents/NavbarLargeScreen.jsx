@@ -1,6 +1,7 @@
 import Logo from "../../../ui/Logo";
+import BadgeLinks from "./BadgeLinks";
 import MainNavItems from "./MainNavItems";
-import UserNavItems from "./UserNavItems";
+import UserProfileLinks from "./UserProfileLinks";
 
 const NavbarLargeScreen = ({ scrolled, isHomePage }) => {
   return (
@@ -15,10 +16,11 @@ const NavbarLargeScreen = ({ scrolled, isHomePage }) => {
     >
       <Logo />
       <div className="flex items-center gap-12 tracking-widest">
-        {<MainNavItems />}
+        <MainNavItems />
       </div>
       <div className="text-2xl flex items-center gap-12">
-        {<UserNavItems />}
+        <BadgeLinks />
+        <UserProfileLinks />
       </div>
     </div>
   );

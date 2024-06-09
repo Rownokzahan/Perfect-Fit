@@ -25,7 +25,7 @@ const AuthLayout = () => {
             <img
               src="https://i.pinimg.com/564x/22/23/ca/2223ca9086cd27f4f7f086454587e5df.jpg"
               alt=""
-              className="w-full max-h-[730px] object-cover object-top"
+              className="hidden lg:block w-full max-h-[730px] object-cover object-top"
             />
 
             <div className="h-full lg:p-16 lg:border lg:rounded-e">

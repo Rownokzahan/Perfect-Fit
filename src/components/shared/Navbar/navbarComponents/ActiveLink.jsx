@@ -9,7 +9,7 @@ const ActiveLink = ({ to, children, hasBadge = false, badge }) => {
 
           {hasBadge && (
             <span
-              className={`absolute -top-2 -right-2 h-4 w-4 shadow flex justify-center items-center rounded-full bg-primary text-primary-white text-xs font-medium`}
+              className={`absolute -top-2 left-4 h-4 w-4 shadow flex justify-center items-center rounded-full bg-primary text-primary-white text-xs font-medium`}
             >
               {badge}
             </span>
