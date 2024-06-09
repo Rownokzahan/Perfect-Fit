@@ -41,10 +41,12 @@ const OurExperts = () => {
       <Container>
         <Title>Meet Our Experts</Title>
 
-        <div className="grid xl:grid-cols-4 md:grid-cols-2 gap-12">
-          {experts?.map((expert) => (
-            <ExpertCard key={expert.id} expert={expert} />
-          ))}
+        <div className="overflow-x-scroll">
+          <div className="flex flex-no-wrap w-max gap-12">
+            {experts?.map((expert) => (
+              <ExpertCard key={expert.id} expert={expert} />
+            ))}
+          </div>
         </div>
       </Container>
     </section>

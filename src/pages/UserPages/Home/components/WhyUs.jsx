@@ -8,44 +8,35 @@ const data = [
   {
     icon: <RiListSettingsLine />,
     title: "Customization Features",
-    description:
-      "Personalize every detail with our extensive customization features, ensuring your dress reflects your unique style.",
   },
   {
     icon: <SlDiamond />,
     title: "Premium Quality Fabric",
-    description:
-      "Handpicked materials ensure comfort and durability, ensuring premium quality in every stitch.",
   },
   {
     icon: <LiaShippingFastSolid />,
     title: "On Time Shipping",
-    description:
-      "Swift delivery options for timely arrivals, because we understand the importance of your special occasion.",
   },
   {
     icon: <MdSentimentSatisfiedAlt />,
     title: "Amazing Customer Service",
-    description:
-      "Our priority is your happiness. Count on us for top-notch service, aimed at ensuring your complete satisfaction.",
   },
 ];
 
 const WhyUs = () => {
   return (
-    <section className="bg-primary-black text-primary-white py-16">
+    <section className="bg-primary-black text-primary-white py-4">
       <Container marginTop={0}>
-        <div className="grid xl:grid-cols-4 md:grid-cols-2 gap-8">
+        <div className="grid grid-cols-2 md:grid-cols-4 md:divide-x md:divide-secondary-white/60">
           {data?.map((item, index) => (
             <div
               key={index}
-              className="text-center border-[0.5px] p-8"
+              className="text-center p-4"
             >
-              <div className="text-4xl mx-auto w-fit">{item.icon}</div>
-              <h4 className="mt-2 mb-4 font-semibold">{item.title}</h4>
-              <p className="text-primary-white text-opacity-80 text-sm">
-                {item.description}
-              </p>
+              <div className="text-2xl lg:text-4xl mx-auto w-fit">
+                {item.icon}
+              </div>
+              <h4 className="mt-2 font-semibold text-sm">{item.title}</h4>
             </div>
           ))}
         </div>

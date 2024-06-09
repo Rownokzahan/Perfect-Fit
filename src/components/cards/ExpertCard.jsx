@@ -3,7 +3,7 @@ import { RiInstagramFill } from "react-icons/ri";
 
 const ExpertCard = ({expert}) => {
   return (
-    <div key={expert.id} className="text-center group overflow-hidden">
+    <div key={expert.id} className="text-center group overflow-hidden rounded">
       <div className="h-[200px] overflow-hidden relative">
         <img
           src={expert.image}

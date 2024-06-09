@@ -18,6 +18,9 @@ export default {
       transitionProperty: {
         height: "height",
       },
+      animation: {
+        "spin-slow": "spin 100s linear infinite",
+      },
     },
   },
   plugins: [],
