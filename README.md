@@ -37,9 +37,9 @@ Explore Perfect Fit live at [perfect-fit-1234.web.app](https://perfect-fit-1234.
     - Carousel for "Our Team" section
 
 2. **Dress Catalog**
-    - Search functionality by name or category
-    - Filter options: Newest, Price, Alphabetical
-    - Sort dropdown: All Dress, Seasonal Dress, Formal Gown, Maxi Dress, Cocktail Dress
+    - Search functionality by name
+    - Sort options: Newest, Price, Alphabetical
+    - Filter dropdown: All Dress, Seasonal Dress, Formal Gown, Maxi Dress, Cocktail Dress
     - Pagination for browsing multiple pages
 
 3. **Wishlist Management**
@@ -51,7 +51,7 @@ Explore Perfect Fit live at [perfect-fit-1234.web.app](https://perfect-fit-1234.
     - Option to delete items from the cart
 
 5. **Custom Dress Creation**
-    - Dynamic creation of dresses based on selected styles and preferences
+    - Dynamic creation of dress based on selected styles
 
 6. **Order Management**
     - View previous orders with selected customizations and pricing details
