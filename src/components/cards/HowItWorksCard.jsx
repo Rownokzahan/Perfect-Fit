@@ -1,17 +1,20 @@
 const HowItWorksCard = ({ step, index }) => {
   return (
-    <div
-      key={index}
-      className="bg-white p-8 shadow text-center flex flex-col justify-between relative"
-    >
-      <div className="w-fit mx-auto p-2 border shadow border-primary rounded-full">
-        <img src={step.image} className="w-8 mx-auto" alt="" />
+    <div className="p-8 pt-4 rounded shadow bg-white group overflow-hidden">
+      <div className="flex">
+        <div className="w-10 h-10 rounded-full border border-primary-white flex justify-center items-center bg-primary-black outline outline-0 group-hover:outline-[300px] duration-500">
+          <span className="text-primary-white text-nowrap text-xl font-bold">
+            {index + 1}
+          </span>
+        </div>
       </div>
-      <h4 className="text-lg font-semibold mt-3 mb-2">{step.title}</h4>
-      <p className="mb-2">{step.description}</p>
 
-      <p className="w-max px-4 py-2 border-b shadow rounded-full bg-white text-secondary-black text-lg absolute -bottom-4 left-1/2 -translate-x-1/2">
-        {index + 1}
+      <h4 className="font-semibold text-lg my-2 group-hover:text-primary-white duration-500">
+        {step.title}
+      </h4>
+
+      <p className="group-hover:text-primary-white/80 duration-500">
+        {step.description}
       </p>
     </div>
   );
