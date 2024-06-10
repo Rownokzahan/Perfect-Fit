@@ -10,7 +10,7 @@ import Pagination from "../../../components/ui/Pagination";
 
 const Dresses = () => {
   useTitle("Products");
-  const { dresses, isLoading, error } = useDresses();
+  const { dresses, isLoading } = useDresses();
 
   // State variables for pagination
   const [currentPage, setCurrentPage] = useState(0);
@@ -29,7 +29,7 @@ const Dresses = () => {
     <Container marginTop={12}>
       <Filters />
 
-      {!currentDresses || currentDresses?.length === 0 || error ? (
+      {currentDresses?.length === 0 ? (
         <NoDress />
       ) : (
         <>

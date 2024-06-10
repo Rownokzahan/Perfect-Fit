@@ -10,7 +10,7 @@ import Pagination from "../../../components/ui/Pagination";
 
 const Products = () => {
   useTitle("Products");
-  const { dresses, isLoading, error } = useDresses();
+  const { dresses, isLoading } = useDresses();
 
   // State variables for pagination
   const [currentPage, setCurrentPage] = useState(0);
@@ -29,7 +29,7 @@ const Products = () => {
     <>
       <Header />
       <div className="bg-white min-h-[70vh] border rounded relative">
-        {error || !currentDresses || currentDresses?.length === 0 ? (
+        {currentDresses?.length === 0 ? (
           <NoProduct />
         ) : (
           <div className="p-8">

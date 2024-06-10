@@ -26,7 +26,11 @@ const useDresses = () => {
   const sortBy = params.get("sort");
   const search = params.get("search");
 
-  let dresses = data;
+  let dresses = [];
+
+  if (!error && Array.isArray(data)) {
+    dresses = data;
+  }
 
   if (category && category !== "all-dress") {
     dresses = dresses?.filter((dress) => dress.category === category);
@@ -42,7 +46,7 @@ const useDresses = () => {
     dresses = sortDresses(dresses, sortBy);
   }
 
-  return { dresses, isLoading, error };
+  return { dresses, isLoading };
 };
 
 export default useDresses;

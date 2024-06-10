@@ -1,9 +1,16 @@
 import Container from "../../../../components/ui/Container";
 import Title from "../../../../components/ui/Title";
-import dresses from "../data/dresses";
 import DressCard from "../../../../components/cards/DressCard";
+import useDresses from "../../../../hooks/useDresses";
+import Spinner from "../../../../components/ui/Spinner";
 
 const NewArrival = () => {
+  const { dresses, isLoading } = useDresses();
+
+  if (isLoading) {
+    return <Spinner fullscreen={false} />;
+  }
+
   return (
     <section>
       <Container>
