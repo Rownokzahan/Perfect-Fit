@@ -24,8 +24,8 @@ const Checkout = () => {
   return (
     <Container marginTop={12}>
       <h4 className="font-semibold text-3xl text-center mb-8">Checkout</h4>
-      <div className="grid grid-cols-3 gap-16">
-        <div className="col-span-2 space-y-6">
+      <div className="grid lg:grid-cols-3 gap-16">
+        <div className="lg:col-span-2 space-y-6 order-last lg:order-none">
           <h5 className="font-semibold text-xl">Delivery Info</h5>
           <CheckoutForm setIsModalOpen={setIsModalOpen} />
         </div>

@@ -15,7 +15,7 @@ const CustomDressSelection = ({ register, errors, watch }) => {
           skirt={watch("Skirt Style", null)}
         />
 
-        <h3 className="h-full -mb-20 text-2xl text-center font-medium">$50</h3>
+        <h3 className="h-full md:-mb-20 text-2xl text-center font-medium">$50</h3>
       </div>
     </div>
   );
