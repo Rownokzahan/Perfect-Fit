@@ -1,52 +1,82 @@
 import Container from "../../../../components/ui/Container";
 import Title from "../../../../components/ui/Title";
-import image1 from "../../../../assets/images/home/team/tailor1.jpeg";
-import image2 from "../../../../assets/images/home/team/tailor2.jpg";
-import image3 from "../../../../assets/images/home/team/tailor3.jpg";
-import image4 from "../../../../assets/images/home/team/tailor4.jpg";
 import ExpertCard from "../../../../components/cards/ExpertCard";
+import experts from "../../../../data/experts";
+import Slider from "react-slick";
+import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick-theme.css";
+import { IoIosArrowBack, IoIosArrowForward } from "react-icons/io";
 
-const experts = [
-  {
-    id: 1,
-    name: "Charlotte Taylor",
-    image: image4,
-    designation: "Designer",
-  },
+function PrevArrow(props) {
+  const { onClick } = props;
+  return (
+    <button
+      className="absolute top-1/2 -translate-y-1/2 -left-1 z-20 p-1 bg-white text-secondary-black text-xl border rounded-full"
+      onClick={onClick}
+    >
+      <IoIosArrowBack />
+    </button>
+  );
+}
 
-  {
-    id: 2,
-    name: "Emma Wilson",
-    image: image2,
-    designation: "Master",
-  },
-
-  {
-    id: 3,
-    name: "Olivia Davis",
-    image: image3,
-    designation: "Tailor",
-  },
-  {
-    id: 4,
-    name: "Jhon Smith",
-    image: image1,
-    designation: "Tailor",
-  },
-];
+function NextArrow(props) {
+  const { onClick } = props;
+  return (
+    <button
+      className="absolute top-1/2 -translate-y-1/2 -right-1 z-20 p-1 bg-white text-secondary-black text-xl border rounded-full"
+      onClick={onClick}
+    >
+      <IoIosArrowForward />
+    </button>
+  );
+}
 
 const OurExperts = () => {
+  const settings = {
+    infinite: true,
+    focusOnSelect: true,
+    slidesToShow: 3,
+    swipeToSlide: true,
+    speed: 700,
+    dots: true,
+    nextArrow: <NextArrow />,
+    prevArrow: <PrevArrow />,
+    responsive: [
+      {
+        breakpoint: 1024,
+        settings: {
+          slidesToShow: 3,
+          slidesToScroll: 3,
+        },
+      },
+      {
+        breakpoint: 768,
+        settings: {
+          slidesToShow: 2,
+          slidesToScroll: 2,
+        },
+      },
+      {
+        breakpoint: 480,
+        settings: {
+          slidesToShow: 1,
+          slidesToScroll: 1,
+        },
+      },
+    ],
+  };
+
   return (
     <section>
       <Container>
         <Title>Meet Our Experts</Title>
 
-        <div className="overflow-x-scroll">
-          <div className="flex flex-no-wrap w-max gap-12">
+        <div className="relative">
+          <Slider {...settings}>
             {experts?.map((expert) => (
               <ExpertCard key={expert.id} expert={expert} />
             ))}
-          </div>
+          </Slider>
         </div>
       </Container>
     </section>
