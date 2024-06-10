@@ -77,7 +77,7 @@ const UserProfileLinks = () => {
         </>
       ) : (
         // Login button for users who are not logged in
-        <div className="-mt-1">
+        <div className="m-4 lg:m-0 lg:-mt-1">
           <a
             href="/auth/login"
             className="text-base font-medium bg-primary text-primary-white py-2 px-4 rounded"
