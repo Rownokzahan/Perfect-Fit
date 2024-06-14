@@ -5,13 +5,12 @@ Welcome to Perfect Fit, a web application designed to provide users with a seaml
 
 ## Live Link
 
-Explore Perfect Fit live at [perfect-fit-1234.web.app](https://perfect-fit-1234.web.app/).
-
+Explore Perfect Fit live at [perfect-fit-1234.web.app](https://perfect-fit-1234.web.app/){:target="_blank"}.
 
 ## GitHub Repositories
 
-- Frontend: [Perfect Fit Frontend](https://github.com/Rownokzahan/perfect-fit)
-- Backend: [Perfect Fit Server](https://github.com/Rownokzahan/perfect-fit-server)
+- Frontend: [Perfect Fit Frontend](https://github.com/Rownokzahan/perfect-fit){:target="_blank"}
+- Backend: [Perfect Fit Server](https://github.com/Rownokzahan/perfect-fit-server){:target="_blank"}
 
 
 ## Features
