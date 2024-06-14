@@ -6,20 +6,6 @@ Welcome to Perfect Fit, a web application designed to provide users with a seaml
 
 Perfect Fit allows users to browse through a catalog of dresses, customize their selections, manage their shopping cart and wishlist, place orders, and much more. The admin panel enables easy management of product listings and ensures smooth operation of the platform.
 
-## Technologies Used
-
-- React
-- Vite
-- React Router Dom
-- Tailwind CSS
-- Redux
-- Redux Toolkit
-- React Icons
-- React Hook Form
-- Headless UI
-- React Hot Toast
-- React Slick
-
 ## Live Link
 
 Explore Perfect Fit live at [perfect-fit-1234.web.app](https://perfect-fit-1234.web.app/).
@@ -28,6 +14,7 @@ Explore Perfect Fit live at [perfect-fit-1234.web.app](https://perfect-fit-1234.
 
 - Frontend: [Perfect Fit Frontend](https://github.com/Rownokzahan/perfect-fit)
 - Backend: [Perfect Fit Server](https://github.com/Rownokzahan/perfect-fit-server)
+
 
 ## Features
 
@@ -66,6 +53,22 @@ Explore Perfect Fit live at [perfect-fit-1234.web.app](https://perfect-fit-1234.
     - Add new products with image upload to Firebase and preview functionality
     - Edit existing products
     - Delete products
+
+
+## Technologies Used
+
+- React
+- Vite
+- React Router Dom
+- Tailwind CSS
+- Redux
+- Redux Toolkit
+- React Icons
+- React Hook Form
+- Headless UI
+- React Hot Toast
+- React Slick
+
 
 ## Setup Instructions
 
