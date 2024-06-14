@@ -2,13 +2,11 @@
 
 Welcome to Perfect Fit, a web application designed to provide users with a seamless shopping experience for customizable dresses.
 
-## Description
-
-Perfect Fit allows users to browse through a catalog of dresses, customize their selections, manage their shopping cart and wishlist, place orders, and much more. The admin panel enables easy management of product listings and ensures smooth operation of the platform.
 
 ## Live Link
 
 Explore Perfect Fit live at [perfect-fit-1234.web.app](https://perfect-fit-1234.web.app/).
+
 
 ## GitHub Repositories
 
