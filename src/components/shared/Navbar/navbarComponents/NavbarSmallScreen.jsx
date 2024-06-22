@@ -8,6 +8,10 @@ import UserProfileLinks from "./UserProfileLinks";
 const NavbarSmallScreen = ({ scrolled, isHomePage }) => {
   const [isOpen, setIsOpen] = useState(false);
 
+  const toggleNavbar = () => {
+    setIsOpen(!isOpen);
+  };
+
   return (
     <nav className="pt-16 lg:hidden">
       {/* Closed Navbar */}
@@ -23,7 +27,7 @@ const NavbarSmallScreen = ({ scrolled, isHomePage }) => {
         <Logo />
 
         {/* Navbar opening button */}
-        <button onClick={() => setIsOpen(true)}>
+        <button onClick={toggleNavbar}>
           <RxHamburgerMenu className="text-xl" />
         </button>
       </div>
@@ -38,19 +42,19 @@ const NavbarSmallScreen = ({ scrolled, isHomePage }) => {
           <Logo />
 
           {/* Navbar closing button */}
-          <button onClick={() => setIsOpen(false)} className="text-xl">
+          <button onClick={toggleNavbar} className="text-xl">
             <RxCross2 />
           </button>
         </div>
 
         <div className="pb-4">
           <div className="grid divide-y [&>*]:p-4">
-            <MainNavItems />
+            <MainNavItems toggleNavbar={toggleNavbar} />
           </div>
           <div className="grid [&>*]:p-4 text-2xl divide-y border-y">
-            <BadgeLinks />
+            <BadgeLinks toggleNavbar={toggleNavbar} />
           </div>
-          <UserProfileLinks />
+          <UserProfileLinks toggleNavbar={toggleNavbar} />
         </div>
       </div>
     </nav>

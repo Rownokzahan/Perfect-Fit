@@ -1,11 +1,17 @@
 import ActiveLink from "./ActiveLink";
 
-const MainNavItems = () => {
+const MainNavItems = ({ toggleNavbar }) => {
   return (
     <>
-      <ActiveLink to={"/"}>Home</ActiveLink>
-      <ActiveLink to={"/dresses"}>Dresses</ActiveLink>
-      <ActiveLink to={"/custom-dress"}>Custom Dress</ActiveLink>
+      <ActiveLink to={"/"} toggleNavbar={toggleNavbar}>
+        Home
+      </ActiveLink>
+      <ActiveLink to={"/dresses"} toggleNavbar={toggleNavbar}>
+        Dresses
+      </ActiveLink>
+      <ActiveLink to={"/custom-dress"} toggleNavbar={toggleNavbar}>
+        Custom Dress
+      </ActiveLink>
     </>
   );
 };

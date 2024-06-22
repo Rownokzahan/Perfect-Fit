@@ -3,7 +3,7 @@ import ActiveLink from "./ActiveLink";
 import useCart from "../../../../hooks/useCart";
 import { HiOutlineHeart, HiOutlineShoppingBag } from "react-icons/hi";
 
-const BadgeLinks = () => {
+const BadgeLinks = ({ toggleNavbar }) => {
   const wishlist = useSelector((state) => state.wishlist);
   const { cartItems, isLoading } = useCart();
 
@@ -13,6 +13,7 @@ const BadgeLinks = () => {
         to={"/wishlist"}
         hasBadge={true}
         badge={wishlist?.length ? wishlist?.length : 0}
+        toggleNavbar={toggleNavbar}
       >
         <HiOutlineHeart />
       </ActiveLink>
@@ -21,6 +22,7 @@ const BadgeLinks = () => {
         to={"/cart"}
         hasBadge={true}
         badge={cartItems?.length && !isLoading ? cartItems?.length : 0}
+        toggleNavbar={toggleNavbar}
       >
         <HiOutlineShoppingBag />
       </ActiveLink>
